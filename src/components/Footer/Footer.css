@@ -1,0 +1,9 @@
+ul {
+  list-style: none;
+}
+ul li a {
+  color: white !important;
+}
+ul li a:hover {
+  color: red !important;
+}

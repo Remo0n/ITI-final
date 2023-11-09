@@ -1,0 +1,22 @@
+a {
+  text-decoration: none !important;
+}
+
+.link {
+  color: white !important;
+}
+.link:hover {
+  color: red !important;
+}
+.dropdown .link {
+  color: black !important;
+}
+.dropdown .link:hover {
+  color: red !important;
+}
+#basic-nav-dropdown {
+  color: white;
+}
+#basic-nav-dropdown:hover {
+  color: red;
+}

@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/firebaseConfig";
 import { setUser } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
+import "./Singup.css";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -43,41 +44,65 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSignUp}>
-        <label htmlFor="email">Email:</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+    <section className="register">
+      <div className="container d-flex justify-content-center  ">
+        <form
+          className="col-lg-7 col-12 border border-dark-subtle d-flex flex-column p-5 shadow rounded bg-secondary "
+          onSubmit={handleSignUp}
+        >
+          <h2 className="fs-1 fw-bold mb-5 text-center ">Sign Up</h2>
+          <div className="  mb-5">
+            <label className="fw-bold col-3" htmlFor="email">
+              Email
+            </label>
+            <input
+              id="email"
+              className=" col-7 rounded py-1 px-2 border-0"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Enter your email"
+            />
+          </div>
+          <div className="  mb-5">
+            <label className="fw-bold col-3" htmlFor="password">
+              Password
+            </label>
+            <input
+              id="password"
+              className=" col-7 rounded py-1 px-2 border-0"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Enter your password"
+            />
+          </div>
+          <div className="  mb-5">
+            <label className="fw-bold col-3" htmlFor="confirmPassword">
+              Confirm Password
+            </label>
+            <input
+              id="confirmPassword"
+              className=" col-7 rounded py-1 px-2 border-0"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              placeholder="Confirm your password"
+            />
+          </div>
+          <div className="text-center">
+            <button className="btn btn-success w-25" type="submit">
+              Sign Up
+            </button>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        <input
-          id="confirmPassword"
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-
-        <button type="submit">Sign Up</button>
-
-        {error && <p style={{ color: "red" }}>{error}</p>}
-      </form>
-    </div>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+          </div>
+        </form>
+      </div>
+    </section>
   );
 };
 

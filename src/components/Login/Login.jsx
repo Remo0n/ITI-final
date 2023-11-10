@@ -86,7 +86,7 @@ export default function Login() {
         </div>
 
         <div className="welcomeuser col-lg-6 col-12 p-5 bg-danger rounded-end shadow">
-          <h2 className="fw-bold fs-1 text-center text-white">Welcome</h2>
+          <h2 className="fw-bold fs-1 text-center text-white">Welcome Back</h2>
         </div>
       </div>
     </section>

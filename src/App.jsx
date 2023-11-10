@@ -4,10 +4,12 @@ import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Singup";
 import ProtectedRoute from "./ProtectedRoute";
 import NavComponent from "./components/Nav/Nav";
+import Footer from "./components/Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { checkAuthStatus } from "./redux/authSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
+import About from "./components/About/About";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,6 +23,8 @@ const App = () => {
       <NavComponent />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="/login"
           element={
@@ -40,6 +44,7 @@ const App = () => {
         <Route path="*" element={<h1>404 Not found</h1>} />{" "}
         {/* Catch-all route */}
       </Routes>
+      <Footer />
     </Router>
   );
 };

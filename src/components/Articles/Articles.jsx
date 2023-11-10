@@ -275,7 +275,7 @@ const Articles = () => {
   // const [petArticle,setPetArticle]=useState([])
 
   return (
-    <section className="articles py-5 " id="articles">
+    <section className="articles py-5 bg-warning-subtle  " id="articles">
       <div className="container">
         <h2 className="text-center mb-5 fs-1 fw-bold">Articles</h2>
         <div className="categories text-center">
@@ -336,7 +336,7 @@ const Articles = () => {
         <div className="articles ">
           <div className="row">
             {filteredData.map((art) => (
-              <SingleArticle articleData={art} />
+              <SingleArticle key={art.id} articleData={art} />
             ))}
           </div>
         </div>

@@ -38,17 +38,17 @@ const NavComponent = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto d-flex align-items-center ">
               <Nav.Link>
-                <Link className="link text-light" to="/">
+                <Link className="link text-light ms-3" to="/home">
                   Home
                 </Link>
               </Nav.Link>
               <Nav.Link>
-                <a className="link text-light" href="#articles">
+                <a className="link text-light ms-3" href="#articles">
                   Articles
                 </a>
               </Nav.Link>
               <Nav.Link>
-                <Link className="link text-light" to="/about">
+                <Link className="link text-light ms-3" to="/about">
                   About
                 </Link>
               </Nav.Link>

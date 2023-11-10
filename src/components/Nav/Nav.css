@@ -16,6 +16,7 @@ a {
 }
 #basic-nav-dropdown {
   color: white;
+  margin-left: 1rem !important;
 }
 #basic-nav-dropdown:hover {
   color: red;

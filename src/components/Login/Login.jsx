@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/firebaseConfig";
 import { setUser } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -36,36 +37,58 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            required
-          />
+    <section className="login py-5 bg-warning-subtle ">
+      <div className="container d-flex justify-content-between flex-wrap">
+       
+        <div className="col-lg-6 col-12 bg-secondary p-5 rounded-start shadow ">
+
+          <form onSubmit={handleLogin}>
+          <h2 className="fs-1 fw-bold mb-5 text-center">Login</h2>
+            <div className="mb-4">
+              <label className="fw-bold col-3 " htmlFor="email">
+                Email
+              </label>
+              <input
+                id="email"
+                className="col-7 rounded py-1 px-2 border-0"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div className="mb-5">
+              <label className="fw-bold col-3 " htmlFor="password">
+                Password
+              </label>
+              <input
+                id="password"
+                className="col-7 rounded py-1 px-2 border-0"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <div className="text-center">
+              <button
+                className="btn btn-success w-25"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? "Logging in..." : "Login"}
+              </button>
+            </div>
+          </form>
+          {error && <p style={{ color: "red" }}>Error: {error}</p>}
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-            required
-          />
+
+        <div className="welcomeuser col-lg-6 col-12 p-5 bg-danger rounded-end shadow">
+          <h2 className="fw-bold fs-1 text-center text-white">Welcome</h2>
         </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
-      {error && <p style={{ color: "red" }}>Error: {error}</p>}
-    </div>
+      </div>
+    </section>
   );
 }

@@ -1,6 +1,5 @@
 import Card from "react-bootstrap/Card";
 import "./SingleArticle.css";
-
 const SingleArticle = (props) => {
   return (
     <div className="col-lg-6 col-12 mb-4 ">

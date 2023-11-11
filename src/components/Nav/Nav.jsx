@@ -52,6 +52,11 @@ const NavComponent = () => {
                   About
                 </Link>
               </Nav.Link>
+              <Nav.Link>
+                <Link className="link text-light ms-3" to="/GoogleMaps">
+                  Locations
+                </Link>
+              </Nav.Link>
 
               {user && (
                 <Link className="link text-light" onClick={handleSignOut}>

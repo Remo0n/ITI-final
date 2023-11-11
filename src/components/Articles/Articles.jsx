@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./Articles.css";
 import SingleArticle from "./SingleArticle";
 // import { useState } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 const Articles = () => {
   const Data = {
@@ -257,27 +258,45 @@ const Articles = () => {
   };
   const [articlesData, setArticlesData] = useState({});
   const [filteredData, setFilteredData] = useState([]);
+  const [checkedValue, setCheckedValue] = useState("Dogs");
 
-  const getCheckValueData = (e) => {
-    const value = e.target.value;
-    console.log(value);
-    if (value) {
-      setFilteredData(Data[value]);
+  let locationUrl = useLocation();
+  console.log(locationUrl.pathname);
+
+  const rendringData = () => {
+    if (
+      locationUrl.pathname === "/home" ||
+      (locationUrl.pathname === "/" && checkedValue)
+    ) {
+      console.log("have value", checkedValue);
+      setFilteredData(Data[checkedValue]?.slice(0, 4));
+    } else {
+      console.log("value is empty or another path");
+      setFilteredData(Data[checkedValue]);
+      window.scrollTo(0, 0);
     }
   };
+
   useEffect(() => {
-    setFilteredData(Data["Dogs"]);
-  }, []);
-
-  // const catArticles = [{ id: 1, petCategory: "cat" }];
-  // const birdArticles = [{ id: 1, petCategory: "bird" }];
-
-  // const [petArticle,setPetArticle]=useState([])
+    // setFilteredData(Data[checkedValue].slice(0, 4));
+    rendringData();
+  }, [checkedValue]);
 
   return (
-    <section className="articles py-5 bg-warning-subtle  " id="articles">
+    <section className="articles pb-5 bg-warning-subtle ">
+      {locationUrl.pathname === "/articles" ? (
+        <div className="articles_title position-relative col-12 mb-5">
+          <h2 className="position-absolute top-50 start-50 translate-middle text-white fw-bold">
+            Articles
+          </h2>
+        </div>
+      ) : (
+        <div className="py-5">
+          <h2 className="text-dark text-center fw-bold">Articles</h2>
+        </div>
+      )}
+
       <div className="container">
-        <h2 className="text-center mb-5 fs-1 fw-bold">Articles</h2>
         <div className="categories text-center">
           <div
             className="btn-group mb-5"
@@ -291,7 +310,7 @@ const Articles = () => {
               id="btnradio1"
               autoComplete="off"
               value="Dogs"
-              onChange={getCheckValueData}
+              onChange={(e) => setCheckedValue(e.target.value)}
             />
             <label
               className="btn rounded btn-outline-primary me-5"
@@ -307,7 +326,9 @@ const Articles = () => {
               id="btnradio2"
               autoComplete="off"
               value="Cats"
-              onChange={getCheckValueData}
+              onChange={(e) => {
+                setCheckedValue(e.target.value);
+              }}
             />
             <label
               className="btn rounded btn-outline-primary mx-5 "
@@ -323,7 +344,7 @@ const Articles = () => {
               id="btnradio3"
               autoComplete="off"
               value="Birds"
-              onChange={getCheckValueData}
+              onChange={(e) => setCheckedValue(e.target.value)}
             />
             <label
               className="btn rounded btn-outline-primary ms-5"
@@ -333,13 +354,22 @@ const Articles = () => {
             </label>
           </div>
         </div>
-        <div className="articles ">
+        <div className="articles mb-lg-5  ">
           <div className="row">
-            {filteredData.map((art) => (
+            {filteredData?.map((art) => (
               <SingleArticle key={art.id} articleData={art} />
             ))}
           </div>
         </div>
+        {locationUrl.pathname === "/articles" ? (
+          ""
+        ) : (
+          <div className="d-flex justify-content-center">
+            <Link className="btn btn-outline-primary " to="/articles">
+              Show More
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

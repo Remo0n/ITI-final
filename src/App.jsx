@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { checkAuthStatus } from "./redux/authSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./components/About/About";
+import Maps from "./components/Maps";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Signup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/GoogleMaps"
+          element={
+            <ProtectedRoute>
+              <Maps />
             </ProtectedRoute>
           }
         />

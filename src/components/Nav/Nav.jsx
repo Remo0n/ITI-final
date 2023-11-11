@@ -29,7 +29,7 @@ const NavComponent = () => {
       <Navbar expand="lg" className="bg-dark py-3 fw-bold">
         <Container>
           <Navbar.Brand>
-            <Link className="text-light" to="">
+            <Link className="text-light" to="/home">
               Paw-Paw
             </Link>
           </Navbar.Brand>
@@ -43,9 +43,9 @@ const NavComponent = () => {
                 </Link>
               </Nav.Link>
               <Nav.Link>
-                <a className="link text-light ms-3" href="#articles">
+                <Link className="link text-light ms-3" to="/articles">
                   Articles
-                </a>
+                </Link>
               </Nav.Link>
               <Nav.Link>
                 <Link className="link text-light ms-3" to="/about">

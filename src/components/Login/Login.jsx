@@ -74,7 +74,7 @@ export default function Login() {
             </div>
             <div className="text-center">
               <button
-                className="btn btn-success w-25"
+                className="btn btn-success w-25 fw-bold"
                 type="submit"
                 disabled={loading}
               >

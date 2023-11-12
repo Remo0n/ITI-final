@@ -11,6 +11,7 @@ import { checkAuthStatus } from "./redux/authSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./components/About/About";
 import Maps from "./components/Maps";
+import { Profile } from "./components/Profile/Profile";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/profile" element={<Profile />} />
         <Route
           path="/login"
           element={

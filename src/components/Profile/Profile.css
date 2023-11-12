@@ -1,17 +1,17 @@
 .pet-profile {
   height: 88vh;
 }
-img {
+.pet-profile img {
   width: 150px;
   height: 150px;
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid #ccc;
 }
-input[type="file"] {
+.pet-profile input[type="file"] {
   display: none;
 }
-form {
+.pet-profile form {
   padding: 10px 40px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -31,8 +31,8 @@ form {
 .pet-profile__img-box label:hover {
   background: #f9f9f9;
 }
-input,
-textarea {
+.pet-profile input,
+.pet-profile textarea {
   padding: 15px;
   border-radius: 5px;
   width: 100%;

@@ -10,8 +10,13 @@ import { useDispatch } from "react-redux";
 import { checkAuthStatus } from "./redux/authSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./components/About/About";
+
+import Articles from "./components/Articles/Articles";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
+
 import Maps from "./components/Maps";
 import { Profile } from "./components/Profile/Profile";
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,6 +31,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/articles" element={<Articles />} />
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
         <Route
@@ -44,6 +50,9 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
+        <Route path="*" element={<NotFoundPage/>} />{" "}
+
         <Route
           path="/GoogleMaps"
           element={
@@ -53,6 +62,7 @@ const App = () => {
           }
         />
         <Route path="*" element={<h1>404 Not found</h1>} />{" "}
+
         {/* Catch-all route */}
       </Routes>
       <Footer />

@@ -1,0 +1,9 @@
+.about_title {
+  background-image: url(../../assets/bgr.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 20rem;
+}
+.about_title h2 {
+  font-size: 5rem !important;
+}

@@ -1,20 +1,23 @@
-import { useState, useMemo, useCallback, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import {
   GoogleMap,
+  useJsApiLoader,
   Marker,
-  DirectionsRenderer,
   Circle,
   MarkerClusterer,
+  DirectionsRenderer,
 } from "@react-google-maps/api";
 import Places from "./Places";
 import Distance from "./distance";
 import "../Maps/MapsStyle.css";
 
 export default function Map() {
-  const [office, setOffice] = useState();
-  const [directions, setDirections] = useState();
-  const mapRef = useRef();
-  const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
   const options = useMemo(
     () => ({
       mapId: "2d513d4218f0ad24",
@@ -23,18 +26,19 @@ export default function Map() {
     }),
     []
   );
-  const onLoad = useCallback((map) => (mapRef.current = map), []);
-  const houses = useMemo(() => generateHouses(center), [center]);
+  const [directions, setDirections] = useState();
+  const [office, setOffice] = useState();
 
   const fetchDirections = (house) => {
-    if (!office) return;
-
-    const service = new google.maps.DirectionsService();
+    const service = new window.google.maps.DirectionsService();
     service.route(
       {
-        origin: house,
-        destination: office,
-        travelMode: google.maps.TravelMode.DRIVING,
+        origin: userLocation,
+        destination: {
+          lat: house.geometry.location.lat(),
+          lng: house.geometry.location.lng(),
+        },
+        travelMode: window.google.maps.TravelMode.DRIVING,
       },
       (result, status) => {
         if (status === "OK" && result) {
@@ -43,13 +47,104 @@ export default function Map() {
       }
     );
   };
+  const mapRef = useRef();
+
+  const [map, setMap] = useState(null);
+  const [userLocation, setUserLocation] = useState(null);
+  const [veterinarians, setVeterinarians] = useState([]);
+  const [userLocationMarker, setUserLocationMarker] = useState(null);
+
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds(userLocation);
+    map.fitBounds(bounds);
+    mapRef.current = map;
+    setMap(map);
+  }, []);
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null);
+  }, []);
+  const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setUserLocation({ lat: latitude, lng: longitude });
+        setUserLocationMarker({
+          position: { lat: latitude, lng: longitude },
+          icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+            scaledSize: new window.google.maps.Size(40, 40),
+          },
+        });
+        map?.panTo({ lat: latitude, lng: longitude });
+      },
+      (error) => {}
+    );
+  }, [map]);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setUserLocation({ lat: latitude, lng: longitude });
+        setUserLocationMarker({
+          position: { lat: latitude, lng: longitude },
+          icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+            scaledSize: new window.google.maps.Size(40, 40),
+          },
+        });
+        map?.panTo({ lat: latitude, lng: longitude, zoom: 500 });
+      },
+      (error) => {}
+    );
+  }, [map]);
+
+  useEffect(() => {
+    if (userLocation && map) {
+      const service = new window.google.maps.places.PlacesService(map);
+
+      const request = {
+        location: userLocation,
+        radius: "5000",
+        type: ["veterinary_care"],
+      };
+
+      service.nearbySearch(request, (results, status) => {
+        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+          setVeterinarians(results);
+          updateMapBounds(results);
+        }
+      });
+    }
+  }, [userLocation, map]);
+
+  const updateMapBounds = (vets) => {
+    if (map && userLocation && vets.length > 0) {
+      const bounds = new window.google.maps.LatLngBounds();
+
+      bounds.extend(
+        new window.google.maps.LatLng(userLocation.lat, userLocation.lng)
+      );
+
+      vets.forEach((vet) => {
+        bounds.extend(
+          new window.google.maps.LatLng(
+            vet.geometry.location.lat(),
+            vet.geometry.location.lng()
+          )
+        );
+      });
+
+      map.fitBounds(bounds);
+    }
+  };
 
   return (
     <div className="container mb-3  mt-3">
       <div className="row">
         <div className="col-md-3">
           <div className="w-100 ">
-            <h2>Search For The Nearest Pet Shop Or Vet</h2>
+            <h5>Use Search Engine</h5>
             <Places
               className="w-100"
               setOffice={(position) => {
@@ -57,18 +152,18 @@ export default function Map() {
                 mapRef.current?.panTo(position);
               }}
             />
-            {!office && <p>Enter the address of your Place.</p>}
             {directions && <Distance leg={directions.routes[0].legs[0]} />}
           </div>
         </div>
         <div className="col-md-9">
           <div className="map">
             <GoogleMap
-              zoom={10}
-              center={center}
               mapContainerClassName="map-container"
-              options={options}
+              center={userLocation || center}
+              zoom={10}
               onLoad={onLoad}
+              options={options}
+              onUnmount={onUnmount}
             >
               {directions && (
                 <DirectionsRenderer
@@ -82,41 +177,51 @@ export default function Map() {
                   }}
                 />
               )}
-
-              {office && (
+              {userLocationMarker && (
                 <>
-                  <Marker
-                    position={office}
-                    icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-                  />
-
-                  <MarkerClusterer>
-                    {(clusterer) =>
-                      houses.map((house) => (
-                        <Marker
-                          key={house.lat}
-                          position={house}
-                          clusterer={clusterer}
-                          onClick={() => {
-                            fetchDirections(house);
-                          }}
-                        />
-                      ))
-                    }
-                  </MarkerClusterer>
-
                   <Circle
-                    center={office}
-                    radius={15000}
+                    center={userLocation}
+                    radius={1500}
                     options={closeOptions}
                   />
                   <Circle
-                    center={office}
-                    radius={30000}
+                    center={userLocation}
+                    radius={3000}
                     options={middleOptions}
                   />
-                  <Circle center={office} radius={45000} options={farOptions} />
+                  <Circle
+                    center={userLocation}
+                    radius={4500}
+                    options={farOptions}
+                  />
                 </>
+              )}
+              {veterinarians.length > 0 && (
+                <MarkerClusterer>
+                  {(clusterer) =>
+                    veterinarians.map((vet) => (
+                      <Marker
+                        key={vet.place_id}
+                        position={{
+                          lat: vet.geometry.location.lat(),
+                          lng: vet.geometry.location.lng(),
+                        }}
+                        label={{
+                          text: vet.name,
+                          color: "white",
+                        }}
+                        icon={{
+                          url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                          scaledSize: new window.google.maps.Size(40, 40),
+                        }}
+                        clusterer={clusterer}
+                        onClick={() => {
+                          fetchDirections(vet);
+                        }}
+                      />
+                    ))
+                  }
+                </MarkerClusterer>
               )}
             </GoogleMap>
           </div>
@@ -154,16 +259,4 @@ const farOptions = {
   fillOpacity: 0.05,
   strokeColor: "#FF5252",
   fillColor: "#FF5252",
-};
-
-const generateHouses = (position) => {
-  const _houses = [];
-  for (let i = 0; i < 100; i++) {
-    const direction = Math.random() < 0.5 ? -2 : 2;
-    _houses.push({
-      lat: position.lat + Math.random() / direction,
-      lng: position.lng + Math.random() / direction,
-    });
-  }
-  return _houses;
 };

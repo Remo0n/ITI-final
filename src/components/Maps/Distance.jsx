@@ -3,8 +3,8 @@ function Distance({ leg }) {
   return (
     <div>
       <p>
-        This Pet Shop is <span className="highlight">{leg.distance.text}</span>
-        away from your Place. That would take
+        This Pet Shop is <span className="highlight">{leg.distance.text}</span>{" "}
+        away from your Place. That would take{" "}
         <span className="highlight">{leg.duration.text}</span> each direction.
       </p>
     </div>

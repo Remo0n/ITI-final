@@ -16,6 +16,7 @@ import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 
 import Maps from "./components/Maps";
 import { Profile } from "./components/Profile/Profile";
+import Shop from "./components/Shop/Shop";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/articles" element={<Articles />} />
+        <Route path="/shop" element={<Shop />} />
         <Route path="/about" element={<About />} />
         {user && <Route path="/profile" element={<Profile />} />}
         <Route

@@ -1,6 +1,7 @@
 // import p1 from "../../Assets/1.png";
 import "./About.css";
-import homeless from "../../assets/homeless.jpg";
+// import homeless from "../../assets/homeless.jpg";
+import homeless from "../../assets/Homeless Animals Need You Now.mp4";
 
 const About = () => {
   return (
@@ -31,7 +32,7 @@ const About = () => {
               </h3>
             </div>
             <figure className="col-lg-6 col-12">
-              <img className="rounded w-100 shadow" src={homeless} alt="" />
+              <video controls className="rounded w-100 shadow" src={homeless} alt="" />
             </figure>
           </div>
         </div>

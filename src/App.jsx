@@ -6,15 +6,20 @@ import ProtectedRoute from "./ProtectedRoute";
 import NavComponent from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { checkAuthStatus } from "./redux/authSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./components/About/About";
+
+import Articles from "./components/Articles/Articles";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
+
 import Maps from "./components/Maps";
+import { Profile } from "./components/Profile/Profile";
 
 const App = () => {
   const dispatch = useDispatch();
-
+  const { user } = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(checkAuthStatus());
   }, [dispatch]);
@@ -25,7 +30,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/articles" element={<Articles />} />
         <Route path="/about" element={<About />} />
+        {user && <Route path="/profile" element={<Profile />} />}
         <Route
           path="/login"
           element={
@@ -42,6 +49,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<NotFoundPage />} />{" "}
         <Route
           path="/GoogleMaps"
           element={

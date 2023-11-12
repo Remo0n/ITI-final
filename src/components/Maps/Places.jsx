@@ -35,7 +35,7 @@ export default function Places({ setOffice }) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         disabled={!ready}
-        placeholder="Search Vet address"
+        placeholder="Enter a Place"
         className="p-2 w-100"
       />
       <ComboboxPopover>

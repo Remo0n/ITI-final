@@ -50,7 +50,7 @@ const Signup = () => {
           className="col-lg-7 col-12 border border-dark-subtle d-flex flex-column p-5 shadow rounded bg-secondary "
           onSubmit={handleSignUp}
         >
-          <h2 className="fs-1 fw-bold mb-5 text-center ">Sign Up</h2>
+          <h2 className="fs-1 fw-bold mb-5 text-center">Sign Up</h2>
           <div className="  mb-5">
             <label className="fw-bold col-3" htmlFor="email">
               Email
@@ -94,7 +94,7 @@ const Signup = () => {
             />
           </div>
           <div className="text-center">
-            <button className="btn btn-success w-25" type="submit">
+            <button className="btn btn-success w-25 fw-bold" type="submit">
               Sign Up
             </button>
 

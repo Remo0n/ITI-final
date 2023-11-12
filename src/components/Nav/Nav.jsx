@@ -53,22 +53,22 @@ const NavComponent = () => {
                 </Link>
               </Nav.Link>
               <Nav.Link>
-                <Link className="link text-light ms-3" to="/profile">
-                  Profile
-                </Link>
+                {user && (
+                  <Link className="link text-light ms-3" to="/profile">
+                    Profile
+                  </Link>
+                )}
               </Nav.Link>
               <Nav.Link>
                 <Link className="link text-light ms-3" to="/GoogleMaps">
                   Locations
                 </Link>
               </Nav.Link>
-
               {user && (
                 <Link className="link text-light" onClick={handleSignOut}>
                   Sign out
                 </Link>
               )}
-
               {!user && (
                 <NavDropdown
                   className="dropdown"

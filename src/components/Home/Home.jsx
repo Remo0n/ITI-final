@@ -1,7 +1,6 @@
 import Articles from "../Articles/Articles";
 import Hero from "../Hero/Hero";
 import Services from "../OurServices/OurServices";
-
 const Home = () => {
   return (
     <>

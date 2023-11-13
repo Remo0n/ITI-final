@@ -16,7 +16,12 @@ import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 
 import Maps from "./components/Maps";
 import { Profile } from "./components/Profile/Profile";
+
 import Vets from "./components/Vets/Vets";
+
+import Shop from "./components/Shop/Shop";
+import ShopItemDetails from "./components/Shop/ShopItemDetails";
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,7 +38,10 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/vets" element={<Vets />} />
         <Route path="/articles" element={<Articles />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/shop/:id" element={<ShopItemDetails/>} />
         <Route path="/about" element={<About />} />
+        <Route path="/GoogleMaps" element={<Maps />} />
         {user && <Route path="/profile" element={<Profile />} />}
         <Route
           path="/login"
@@ -52,14 +60,6 @@ const App = () => {
           }
         />
         <Route path="*" element={<NotFoundPage />} />{" "}
-        <Route
-          path="/GoogleMaps"
-          element={
-            <ProtectedRoute>
-              <Maps />
-            </ProtectedRoute>
-          }
-        />
         <Route path="*" element={<h1>404 Not found</h1>} />{" "}
         {/* Catch-all route */}
       </Routes>

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../services/firebaseConfig";
+import { auth, db } from "../../services/firebaseConfig";
 import { setUser } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import "./Singup.css";
+import { doc, setDoc } from "firebase/firestore";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,13 @@ const Signup = () => {
         email,
         password
       );
+
+      const user = userCredential.user;
+      await setDoc(doc(db, "users", user.uid), {
+        email: user.email,
+        // any other initial user data
+      });
+
       // Set the user in the global state
       dispatch(
         setUser({

@@ -1,20 +1,18 @@
 .vets_title {
-    background-image: url(../../assets/bgr.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 20rem;
-  }
-  .vets_title h2 {
-    font-size: 5rem !important;
-  }
-  
-  .vision h3::before {
-    content: "";
-    height: 0.5rem;
-    width: 0.5rem;
-    border-radius: 5px;
-    background-color: rgb(255, 102, 0);
-    display: inline-block;
-    margin-right: 0.5rem;
-  }
-  
+  background-image: url(../../assets/bgr.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 20rem;
+}
+.vets_title h2 {
+  font-size: 5rem !important;
+}
+
+.form-select {
+  color: rgb(88, 88, 86);
+  font-weight: bold;
+}
+.option {
+  color: rgb(88, 88, 86);
+  background-color: rgb(217, 221, 221);
+}

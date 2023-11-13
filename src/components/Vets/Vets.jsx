@@ -11,6 +11,11 @@ const Vets = () => {
     "ElIbrahimeya",
     "Ganaklis",
     "Miami",
+    "Agami",
+    "SabaPasha",
+    "Glim",
+    "SanStefano",
+    "SidiBeshr",
   ];
   const vetsData = {
     Smouha: [
@@ -143,6 +148,103 @@ const Vets = () => {
         phone: ["01027416493", "01003114988", "01229269991"],
       },
     ],
+    Agami: [
+      {
+        id: 1,
+        name: "Donia Veterinary Clinic",
+        address: "Km 26,Alex Matrouh Desert Rd,Agami,Alexandria.",
+        phone: ["035084141", "01275582088", "01091355577"],
+      },
+      {
+        id: 2,
+        name: "El Yousr Veterinary Clinic",
+        address: "473 Alex Matrouh Desert Rd,Agami,Alexandria.",
+        phone: ["034355547", "01275582088", "01009530966"],
+      },
+      {
+        id: 3,
+        name: "Dr.Ahmed Abdel Qawy",
+        address:
+          "Km 21,El Safa St Off Alex Matrouh Desert Rd,Agami,Alexandria.",
+        phone: ["01282360292"],
+      },
+      {
+        id: 4,
+        name: "El Youmn Veterinary Clinic",
+        address: "82 Alex Matrouh Desert Rd,Hannoville,Alexandria.",
+        phone: ["033021523", "01275582088"],
+      },
+      {
+        id: 5,
+        name: "Ragae Veterinary Clinic",
+        address: "Hussein Kbadaya St,Off El Bitash St,El Bitash,Alexandria.",
+        phone: ["01275582088"],
+      },
+    ],
+    Glim: [
+      {
+        id: 1,
+        name: "Pet's Hub",
+        address: "10 Mostafa Maher St,Glim,Alexandria.",
+        phone: ["01558820051"],
+      },
+      {
+        id: 2,
+        name: "Dr.Faris El Mamlouk",
+        address: "14 Ahmed Fathy St Off Abou Qir,Glim,Alexandria.",
+        phone: ["01221353769"],
+      },
+    ],
+    SidiBeshr: [
+      {
+        id: 1,
+        name: "Dr.Mohamed Shebl",
+        address: "52 Rd 16 Off Gamal Abdel Nasser St,Sidi Beshr,Alexandria.",
+        phone: ["01155187783"],
+      },
+      {
+        id: 2,
+        name: "Animal Health Care Center",
+        address: "48 Mohamed El Serafy St,Sidi Beshr,Alexandria.",
+        phone: ["035490424", "01222324552", "01222564740", "01000606526"],
+      },
+      {
+        id: 3,
+        name: "Vet Health",
+        address:
+          "448 El Courniche Rd,Mohamed Naguib Sq,Mariam Tower,Sidi Beshr,Alexandria.",
+        phone: ["033594804", "01008877614"],
+      },
+    ],
+    SanStefano: [
+      {
+        id: 1,
+        name: "Vet 4 Pets Clinic",
+        address: "3 Talaat Basha St,San Stefano,Alexandria.",
+        phone: ["01120083050", "01006063549"],
+      },
+    ],
+    SabaPasha: [
+      {
+        id: 1,
+        name: "Petcare Clinic",
+        address: "11 Mokhtar Abdel Halim Khallaf St,Saba Pasha,Alexandria.",
+        phone: ["035848127", "01144447592"],
+      },
+      {
+        id: 2,
+        name: "El Raml Vet Clinic",
+        address:
+          "Villa Dr.Maher Fahmy ,Behind 25 Abou Heif St,Saba Pasha,Alexandria.",
+        phone: ["035824210", "035824572", "01222746550"],
+      },
+      {
+        id: 3,
+        name: "Just 4 Pets",
+        address: "59 Abdel Salam Aref St,Saba Pasha,Alexandria.",
+        phone: ["035834269", "01208090305"],
+      },
+    ],
   };
 
   const [data, setData] = useState({});
@@ -171,9 +273,10 @@ const Vets = () => {
               setSelected(e.target.value);
             }}
           >
-            <option>Select Your Area</option>
-            {vetsAreas.map((area, index) => (
-              <option key={index} value={area}>
+            <option className="option">Select Your Area</option>
+            {vetsAreas.sort().map((area, index) => (
+              
+              <option className="option" key={index} value={area}>
                 {area}
               </option>
             ))}

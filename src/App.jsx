@@ -17,6 +17,7 @@ import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import Maps from "./components/Maps";
 import { Profile } from "./components/Profile/Profile";
 import Shop from "./components/Shop/Shop";
+import ShopItemDetails from "./components/Shop/ShopItemDetails";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/shop/:id" element={<ShopItemDetails/>} />
         <Route path="/about" element={<About />} />
         {user && <Route path="/profile" element={<Profile />} />}
         <Route

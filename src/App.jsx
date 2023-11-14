@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkAuthStatus } from "./redux/authSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./components/About/About";
-
 import Articles from "./components/Articles/Articles";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 
@@ -21,7 +20,6 @@ import Vets from "./components/Vets/Vets";
 
 import Shop from "./components/Shop/Shop";
 import ShopItemDetails from "./components/Shop/ShopItemDetails";
-
 
 const App = () => {
   const dispatch = useDispatch();
@@ -39,7 +37,7 @@ const App = () => {
         <Route path="/vets" element={<Vets />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/shop/:id" element={<ShopItemDetails/>} />
+        <Route path="/shop/:id" element={<ShopItemDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/GoogleMaps" element={<Maps />} />
         {user && <Route path="/profile" element={<Profile />} />}

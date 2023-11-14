@@ -2,7 +2,7 @@ import "./OurServices.css";
 import SingleService from "./SingleService";
 
 const Services = () => {
-  const Services= [
+  const Services = [
     {
       id: 1,
       serviceFigure: "src/Assets/ser1.jpg",

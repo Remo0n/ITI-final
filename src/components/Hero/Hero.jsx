@@ -2,19 +2,24 @@
 // import p1 from "../../Assets/1.png";
 // import p2 from "../../Assets/2.png";
 // import p3 from "../../Assets/3.png";
+import { Trans, useTranslation } from "react-i18next";
 import p4 from "../../Assets/4.webp";
 import "./Hero.css";
 
 const Hero = () => {
+  const { t, i18n } = useTranslation();
+
   return (
     <section className=" hero py-5 bg-warning-subtle ">
       <div className="container d-flex align-items-center flex-wrap -content-sm-center ">
         <div className="hero_info col-lg-5 col-12">
+          {/* <Trans i18nKey="title1" className="hero_info_title text-white fw-light mb-4"> */}
           <h1 className="hero_info_title text-white fw-light mb-4">
-            We Care <span className="fw-bold">Your Pets</span>
+            {t("We Care")} <span className="fw-bold">{t("Your Pets")}</span>
           </h1>
+          {/* </Trans> */}
           <p className="hero_info_desc text-white fs-3">
-            Welcome to your pet's second home
+            {t("Welcome to your pet's second home")}
           </p>
         </div>
         <figure className="hero_gallery col-lg-7 col-12">

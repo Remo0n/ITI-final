@@ -1,7 +1,8 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import arrLang from "./Languages/Ar.json";
+import arLang from "./Languages/Ar.json";
+import enLang from "./Languages/En.json";
 i18n
 
   .use(LanguageDetector)
@@ -16,16 +17,10 @@ i18n
     },
     resources: {
       en: {
-        translation: {
-          description: {
-            part1: "First initialize.",
-            part2: "Learn React",
-            part3: "learning",
-          },
-        },
+        translation: enLang,
       },
       ar: {
-        translation: arrLang,
+        translation: arLang,
       },
     },
   });

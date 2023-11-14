@@ -3,7 +3,7 @@ import "./Articles.css";
 import SingleArticle from "./SingleArticle";
 import { Link, useLocation } from "react-router-dom";
 import { axiosShop } from "../../services/axiosShopConfig";
-import LoadingSpinner from "../LoadingSpinner";
+import LoadingSpinner from "../../Shared/LoadingSpinner";
 
 const Articles = () => {
   const [articlesData, setArticlesData] = useState({});
@@ -17,17 +17,15 @@ const Articles = () => {
   const rendringArticlesData = () => {
     setSpinner(true);
     axiosShop.get("/items/articles").then((res) => {
-      console.log(res.data);
       setArticlesData(res.data);
+      const dataToFilter = res.data[checkedValue];
+      if (locationUrl.pathname === "/home" || locationUrl.pathname === "/") {
+        setFilteredData(dataToFilter?.slice(0, 4));
+      } else {
+        setFilteredData(dataToFilter);
+      }
       setSpinner(false);
     });
-
-    if (locationUrl.pathname === "/home" || locationUrl.pathname === "/") {
-      setFilteredData(articlesData[checkedValue]?.slice(0, 4));
-    } else {
-      setFilteredData(articlesData[checkedValue]);
-      window.scrollTo(0, 0);
-    }
   };
 
   useEffect(() => {

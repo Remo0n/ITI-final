@@ -21,12 +21,30 @@ import Vets from "./components/Vets/Vets";
 import Shop from "./components/Shop/Shop";
 import ShopItemDetails from "./components/Shop/ShopItemDetails";
 
+import "./i18n";
+import { useTranslation } from "react-i18next";
+
 const App = () => {
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+  console.log(currentLanguage);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(checkAuthStatus());
   }, [dispatch]);
+
+  //for translation
+  const rtlLanguages = ["ar"]; // Add other RTL languages if needed
+
+  function isRtlLanguage(language) {
+    return rtlLanguages.includes(language);
+  }
+  useEffect(() => {
+    const currentLanguage = i18n.language;
+    const direction = isRtlLanguage(currentLanguage) ? "rtl" : "ltr";
+    document.documentElement.setAttribute("dir", direction);
+  }, [i18n.language]);
 
   return (
     <Router>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import VetCard from "./VetCard";
 import { axiosShop } from "../../services/axiosShopConfig";
-import LoadingSpinner from "../LoadingSpinner";
+import LoadingSpinner from "../../Shared/LoadingSpinner";
 import "./Vets.css";
 
 const Vets = () => {

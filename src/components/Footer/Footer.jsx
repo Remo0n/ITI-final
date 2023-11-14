@@ -1,29 +1,33 @@
 import { Link } from "react-router-dom";
+import { useTranslation, initReactI18next } from "react-i18next";
+
 import "./Footer.css";
 const Footer = () => {
+  const { t, i18n } = useTranslation();
+
   return (
     <footer className="bg-dark pt-5 pb-2">
       <div className="container">
         <div className="row justify-content-between mb-5">
           <div className="footer_useful col-lg-4 col-6 mb-5 mb-md-0">
-            <h3 className="text-info mb-4">Quick Links</h3>
+            <h3 className="text-info mb-4">{t("Quick Links")}</h3>
             <ul className="m-0 p-0">
               <li className="mb-2">
-                <Link to="/home">Home</Link>
+                <Link to="/home">{t("Home")}</Link>
               </li>
               <li className="mb-2">
-                <Link to="/about">About</Link>
+                <Link to="/about">{t("About")}</Link>
               </li>
               <li className="mb-2">
-                <Link to="/signup">Register</Link>
+                <Link to="/signup">{t("Register")}</Link>
               </li>
               <li>
-                <Link to="/login">Login</Link>
+                <Link to="/login">{t("Login")}</Link>
               </li>
             </ul>
           </div>
           <div className="footer_useful col-lg-4 col-6">
-            <h3 className="text-info mb-4">Socials</h3>
+            <h3 className="text-info mb-4">{t("Socials")}</h3>
             <ul className="m-0 p-0 d-flex">
               <li>
                 <a href="https://www.facebook.com/">
@@ -116,12 +120,9 @@ const Footer = () => {
           </div> */}
         </div>
         <h5 className="text-center text-white">
-          &copy; 2023 <span className="text-success">STAR</span><span className="fs-3 text-danger">O</span>.Dev All Rights
-          Are Reserved.{" "}
-        </h5>
-        <h5 className="text-center text-white">
-          &copy; 2023 <span className="text-danger">SO</span>
-          <span className="text-success">ART</span>.Dev All Rights Are Reserved.{" "}
+          &copy; All Rights Are Reserved{" "}
+          <span className="text-success">STAR</span>
+          <span className="fs-3 text-danger">O</span>.Dev 2023{" "}
         </h5>
       </div>
     </footer>

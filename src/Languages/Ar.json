@@ -1,8 +1,20 @@
 {
-    "description": {
-      "part1": "اهلا بيكم",
-      "part2": "اتعلم ريأكت",
-      "part3": "اهلا يا ايها العالم"
-    }
-  }
-  
+  "Home": "الصفحة الرئيسية",
+  "Vets": " العيادات",
+  "Articles": "المقالات",
+  "Shop": "المتجر",
+  "About": "عن الموقع",
+  "Locations": "الخريطة",
+  "Join us": "انضم لنا",
+  "Register": "حساب جديد",
+  "Login": "دخول",
+  "Our Services": "خدماتنا",
+  "Quick Links": "تنقل بسرعة",
+  "Socials": "التواصل الاجتماعي",
+  "We Care": "نحن نعتني ",
+  "Your Pets": " بحيواناتك الأليفة",
+  "Welcome to your pet's second home": "مرحبا بحيوانك الأليف في بيته الثاني",
+  "Stop Running !": "توقف عن الركض !",
+  "You got a place here...": "لديك مكان هنا...",
+  "Join Us Now":"انضم الينا الان"
+}

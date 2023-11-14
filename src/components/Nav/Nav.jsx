@@ -43,6 +43,11 @@ const NavComponent = () => {
                 </Link>
               </Nav.Link>
               <Nav.Link>
+                <Link className="link text-light ms-3" to="/vets">
+                  Vets
+                </Link>
+              </Nav.Link>
+              <Nav.Link>
                 <Link className="link text-light ms-3" to="/articles">
                   Articles
                 </Link>

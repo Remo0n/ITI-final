@@ -10,7 +10,15 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import "./Nav.css";
 
+import { useTranslation, initReactI18next } from "react-i18next";
+
 const NavComponent = () => {
+  const lngs = {
+    en: { nativeName: "English" },
+    ar: { nativeName: "العربية" },
+  };
+
+  const { t, i18n } = useTranslation();
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -24,6 +32,7 @@ const NavComponent = () => {
       console.error("Error signing out: ", error);
     }
   };
+
   return (
     <nav>
       <Navbar expand="lg" className="bg-dark py-3 fw-bold">
@@ -33,28 +42,48 @@ const NavComponent = () => {
               Paw-Paw
             </Link>
           </Navbar.Brand>
-
+          <div>
+            {Object.keys(lngs).map((lng, i) =>
+              i18n.language != lng ? (
+                <button
+                  key={i}
+                  type="submit"
+                  className="btn btn-warning me-3 fw-bold"
+                  onClick={() => i18n.changeLanguage(lng)}
+                >
+                  {lngs[lng].nativeName}
+                </button>
+              ) : (
+                ""
+              )
+            )}
+          </div>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto d-flex align-items-center ">
+            <Nav className=" ournavbar d-flex align-items-center ">
               <Nav.Link>
                 <Link className="link text-light ms-3" to="/home">
-                  Home
+                  {t("Home")}
+                </Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link className="link text-light ms-3" to="/vets">
+                  {t("Vets")}
                 </Link>
               </Nav.Link>
               <Nav.Link>
                 <Link className="link text-light ms-3" to="/articles">
-                  Articles
+                  {t("Articles")}
                 </Link>
               </Nav.Link>
               <Nav.Link>
                 <Link className="link text-light ms-3" to="/shop">
-                  Shop
+                  {t("Shop")}
                 </Link>
               </Nav.Link>
               <Nav.Link>
                 <Link className="link text-light ms-3" to="/about">
-                  About
+                  {t("About")}
                 </Link>
               </Nav.Link>
               <Nav.Link>
@@ -66,7 +95,7 @@ const NavComponent = () => {
               </Nav.Link>
               <Nav.Link>
                 <Link className="link text-light ms-3" to="/GoogleMaps">
-                  Locations
+                  {t("Locations")}
                 </Link>
               </Nav.Link>
               {user && (
@@ -77,18 +106,18 @@ const NavComponent = () => {
               {!user && (
                 <NavDropdown
                   className="dropdown"
-                  title="Join us "
+                  title={t("Join us")}
                   id="basic-nav-dropdown"
                 >
                   <NavDropdown.Item>
                     <Link className="link fw-bold" to={"/signup"}>
-                      Register
+                      {t("Register")}
                     </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item>
                     <Link className="link fw-bold" to={"/login"}>
-                      Login
+                      {t("Login")}
                     </Link>
                   </NavDropdown.Item>
                 </NavDropdown>

@@ -1,13 +1,6 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useMemo,
-  useCallback,
-} from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
   GoogleMap,
-  useJsApiLoader,
   Marker,
   Circle,
   MarkerClusterer,
@@ -71,8 +64,29 @@ export default function Map() {
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null);
   }, []);
-  const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
-
+  // const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
+  const center = useMemo(() => ({ lat: 31.2156, lng: 29.9553 }), []);
+  let x = 2;
+  const [goToLocationClicked, setGoToLocationClicked] = useState(false);
+  const handleGoToLocationClick = () => {
+    if (userLocation) {
+      // Set the destination coordinates
+      const destination = { lat: 31.2156, lng: 29.9553, zoom: 8 };
+      // Fetch directions from user location to the destination
+      fetchDirections({
+        geometry: {
+          location: new window.google.maps.LatLng(
+            destination.lat,
+            destination.lng
+          ),
+        },
+      });
+      // Optionally, you can pan the map to the destination
+      mapRef.current?.panTo(destination);
+      // Update the state to indicate that the button has been clicked
+      setGoToLocationClicked(true);
+    }
+  };
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
@@ -81,31 +95,21 @@ export default function Map() {
           position: { lat: latitude, lng: longitude },
           icon: {
             url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
-            scaledSize: new window.google.maps.Size(40, 40),
+            scaledSize: new window.google.maps.Size(30, 30),
           },
         });
-        map?.panTo({ lat: latitude, lng: longitude });
+        map?.panTo({ lat: latitude, lng: longitude, zoom: 8 });
       },
       (error) => {}
     );
   }, [map]);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      ({ coords: { latitude, longitude } }) => {
-        setUserLocation({ lat: latitude, lng: longitude });
-        setUserLocationMarker({
-          position: { lat: latitude, lng: longitude },
-          icon: {
-            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
-            scaledSize: new window.google.maps.Size(40, 40),
-          },
-        });
-        map?.panTo({ lat: latitude, lng: longitude, zoom: 500 });
-      },
-      (error) => {}
-    );
-  }, [map]);
+    if (x === 3 && userLocation && map) {
+      handleGoToLocationClick();
+      console.log("map loaded");
+    }
+  }, [x, userLocation, map]);
 
   useEffect(() => {
     if (userLocation && map) {
@@ -113,7 +117,7 @@ export default function Map() {
 
       const request = {
         location: userLocation,
-        radius: "5000",
+        radius: "500000",
         type: ["veterinary_care"],
       };
 
@@ -153,6 +157,12 @@ export default function Map() {
         <div className="col-md-3">
           <div className="w-100 ">
             <h5>Use Search Engine</h5>
+            <button
+              className="btn btn-primary"
+              onClick={handleGoToLocationClick}
+            >
+              Go To Location
+            </button>
             <Places
               className="w-100"
               setOffice={(position) => {
@@ -167,8 +177,8 @@ export default function Map() {
           <div className="map">
             <GoogleMap
               mapContainerClassName="map-container"
-              center={userLocation || center}
-              zoom={10}
+              center={center}
+              zoom={6}
               onLoad={onLoad}
               options={options}
               onUnmount={onUnmount}
@@ -187,6 +197,10 @@ export default function Map() {
               )}
               {userLocationMarker && (
                 <>
+                  <Marker
+                    position={userLocationMarker.position}
+                    icon={userLocationMarker.icon}
+                  />
                   <Circle
                     center={userLocation}
                     radius={1500}

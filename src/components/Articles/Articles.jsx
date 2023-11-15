@@ -1,21 +1,47 @@
 import { useState, useEffect } from "react";
-import "./Articles.css";
 import SingleArticle from "./SingleArticle";
 import { Link, useLocation } from "react-router-dom";
 import { axiosShop } from "../../services/axiosShopConfig";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
+import { useTranslation } from "react-i18next";
+import "./Articles.css";
 
 const Articles = () => {
   const [articlesData, setArticlesData] = useState({});
   const [filteredData, setFilteredData] = useState([]);
   const [checkedValue, setCheckedValue] = useState("Dogs");
   const [spinner, setSpinner] = useState(false);
+  const { t, i18n } = useTranslation();
 
   let locationUrl = useLocation();
   console.log(locationUrl.pathname);
 
+  const currentLng = i18n.language;
+
+  //This was the new solution
+
   const rendringArticlesData = () => {
     setSpinner(true);
+    axiosShop.get("/items/newArticles").then((res) => {
+      setArticlesData(res.data);
+      const dataToFilter = res.data[currentLng][checkedValue];
+      if (locationUrl.pathname === "/home" || locationUrl.pathname === "/") {
+        setFilteredData(dataToFilter?.slice(0, 4));
+      } else {
+        setFilteredData(dataToFilter);
+      }
+      setSpinner(false);
+    });
+  };
+
+  useEffect(() => {
+    rendringArticlesData();
+  }, [checkedValue, currentLng]);
+
+  //This was the old solution
+
+  /*
+  const rendringArticlesData = () => {
     axiosShop.get("/items/articles").then((res) => {
       setArticlesData(res.data);
       const dataToFilter = res.data[checkedValue];
@@ -30,19 +56,21 @@ const Articles = () => {
 
   useEffect(() => {
     rendringArticlesData();
+   
   }, [checkedValue]);
 
+*/
   return (
     <section className="articles pb-5 bg-warning-subtle ">
       {locationUrl.pathname === "/articles" ? (
         <div className="articles_title position-relative col-12 mb-5">
           <h2 className="position-absolute top-50 start-50 translate-middle text-white fw-bold">
-            Articles
+            {t("Articles")}
           </h2>
         </div>
       ) : (
         <div className="py-5">
-          <h2 className="text-dark text-center fw-bold">Articles</h2>
+          <h2 className="text-dark text-center fw-bold"> {t("Articles")}</h2>
         </div>
       )}
 
@@ -66,7 +94,7 @@ const Articles = () => {
               className="btn rounded btn-outline-primary me-5"
               htmlFor="btnradio1"
             >
-              Dogs
+              {t("Dogs")}
             </label>
 
             <input
@@ -84,7 +112,7 @@ const Articles = () => {
               className="btn rounded btn-outline-primary mx-5 "
               htmlFor="btnradio2"
             >
-              Cats
+              {t("Cats")}
             </label>
 
             <input
@@ -100,7 +128,7 @@ const Articles = () => {
               className="btn rounded btn-outline-primary ms-5"
               htmlFor="btnradio3"
             >
-              Birds
+              {t("Birds")}
             </label>
           </div>
         </div>

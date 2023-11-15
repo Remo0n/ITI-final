@@ -16,5 +16,34 @@
   "Welcome to your pet's second home": "مرحبا بحيوانك الأليف في بيته الثاني",
   "Stop Running !": "توقف عن الركض !",
   "You got a place here...": "لديك مكان هنا...",
-  "Join Us Now":"انضم الينا الان"
+  "Join Us Now": "انضم الينا الان",
+  "Articles": "المقالات",
+  "Dogs": "الكلاب",
+  "Cats": "القطط",
+  "Birds": "الطيور",
+  "Vets": " العيادات",
+  "Select Your Area": "اختر منطقتك",
+  "please wait we are collecting data": " جاري تحميل البيانات",
+  "Address":"العنوان",
+  "Phone":"تليفون",
+  "All Rights Are Reserved":"جميع الحقوق محفوظة لشركة",
+  "Sign Up title":"حساب جديد",
+  "Email":"البريد الالكتروني",
+  "Password":"الرقم السري",
+  "Confirm Password":"تأكيد الرقم السري",
+  "Sign Up":"انشاء حساب",
+  "Enter your email":"ادخل البريد الالكتروني",
+  "Enter your password":"ادخل الرقم السري ",
+  "Confirm Password placeholder":"تأكيد الرقم السري",
+  "Welcome Back":"اهلا بعودتك",
+  "About Us": "عن الموقع",
+  "Our Vision":"رؤيتنا",
+  "We Ourselves are pet's owners.":"نحن انفسنا لدينا حيوانات أليفة.",
+  "Pets deserve to be treated well.":"الحيوانات الأليفة تستحق المعاملة اللطيفة",
+  "Please have some mercy upon them.":"من فضلكم الرحمة بهذه الحيوانات. ",
+  "We aim to give them what they deserve.":"نحن نهدف لمنحهم ما يستحقونه.",
+  "Our Team":"فريقنا"
+
+
+
 }

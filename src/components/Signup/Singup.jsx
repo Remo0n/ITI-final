@@ -6,8 +6,10 @@ import { setUser } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import "./Singup.css";
 import { doc, setDoc } from "firebase/firestore";
+import { useTranslation, initReactI18next } from "react-i18next";
 
 const Signup = () => {
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -58,10 +60,12 @@ const Signup = () => {
           className="col-lg-7 col-12 border border-dark-subtle d-flex flex-column p-5 shadow rounded bg-secondary "
           onSubmit={handleSignUp}
         >
-          <h2 className="fs-1 fw-bold mb-5 text-center">Sign Up</h2>
+          <h2 className="fs-1 fw-bold mb-5 text-center">
+            {t("Sign Up title")}
+          </h2>
           <div className="  mb-5">
             <label className="fw-bold col-3" htmlFor="email">
-              Email
+              {t("Email")}
             </label>
             <input
               id="email"
@@ -70,12 +74,12 @@ const Signup = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="Enter your email"
+              placeholder={t("Enter your email")}
             />
           </div>
           <div className="  mb-5">
             <label className="fw-bold col-3" htmlFor="password">
-              Password
+              {t("Password")}
             </label>
             <input
               id="password"
@@ -84,12 +88,12 @@ const Signup = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              placeholder="Enter your password"
+              placeholder={t("Enter your password")}
             />
           </div>
           <div className="  mb-5">
             <label className="fw-bold col-3" htmlFor="confirmPassword">
-              Confirm Password
+              {t("Confirm Password")}
             </label>
             <input
               id="confirmPassword"
@@ -98,12 +102,12 @@ const Signup = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
-              placeholder="Confirm your password"
+              placeholder={t("Confirm Password placeholder")}
             />
           </div>
           <div className="text-center">
             <button className="btn btn-success w-25 fw-bold" type="submit">
-              Sign Up
+              {t("Sign Up")}
             </button>
 
             {error && <p style={{ color: "red" }}>{error}</p>}

@@ -11,19 +11,13 @@ import Distance from "./distance";
 import "../Maps/MapsStyle.css";
 import { useParams } from "react-router";
 
-export default function Map() {
-
-  const params = useParams();
-  useEffect(() => {
-    console.log(params)
-  }, [])
-  
 import p4 from "../../Assets/4.webp";
 import { Trans, useTranslation } from "react-i18next";
 
 export default function Map() {
   const { t, i18n } = useTranslation();
 
+  const params = useParams();
 
   const options = useMemo(
     () => ({
@@ -75,25 +69,25 @@ export default function Map() {
   const center = useMemo(() => ({ lat: 31.2156, lng: 29.9553 }), []);
   let x = 3;
   const [goToLocationClicked, setGoToLocationClicked] = useState(false);
+
   const handleGoToLocationClick = () => {
-    if (userLocation) {
-      // Set the destination coordinates
-      const destination = { lat: 31.2156, lng: 29.9553, zoom: 8 };
-      // Fetch directions from user location to the destination
-      fetchDirections({
-        geometry: {
-          location: new window.google.maps.LatLng(
-            destination.lat,
-            destination.lng
-          ),
-        },
-      });
-      // Optionally, you can pan the map to the destination
-      mapRef.current?.panTo(destination);
-      // Update the state to indicate that the button has been clicked
-      setGoToLocationClicked(true);
+    if (params.lat && params.lng) {
+      if (userLocation) {
+        const destination = {
+          lat: parseFloat(params.lat),
+          lng: parseFloat(params.lng),
+        };
+        fetchDirections({
+          geometry: {
+            location: new window.google.maps.LatLng(params.lat, params.lng),
+          },
+        });
+        mapRef.current?.panTo(destination);
+        setGoToLocationClicked(true);
+      }
     }
   };
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
@@ -110,13 +104,9 @@ export default function Map() {
       (error) => {}
     );
   }, [map]);
-
   useEffect(() => {
-    if (x === 2 && userLocation && map) {
-      handleGoToLocationClick();
-      console.log("map loaded");
-    }
-  }, [x, userLocation, map]);
+    handleGoToLocationClick();
+  }, [params, map, userLocation]);
 
   useEffect(() => {
     if (userLocation && map) {
@@ -164,12 +154,6 @@ export default function Map() {
         <div className="col-md-3">
           <div className="w-100 ">
             <h5>{t("Search For Another Vet")}</h5>
-            <button
-              className="btn btn-primary"
-              onClick={handleGoToLocationClick}
-            >
-              Go To Alex
-            </button>
             <Places
               className="w-100"
               setOffice={(position) => {

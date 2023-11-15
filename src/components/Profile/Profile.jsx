@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { db } from "../../services/firebaseConfig";
+import { doc, setDoc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import "./Profile.css";
 
 export const Profile = () => {
@@ -8,8 +11,9 @@ export const Profile = () => {
     breed: "",
     color: "",
     description: "",
-    image: null, // Updated to null for the image
+    image: null,
   });
+  const { user } = useSelector((state) => state.auth);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +30,20 @@ export const Profile = () => {
       image: file,
     }));
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await setDoc(doc(db, "users", user.uid), {
+        petProfile: {
+          pet,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="pet-profile">
       <div className="pet-profile__img-box">
@@ -44,7 +62,7 @@ export const Profile = () => {
         />
       </div>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
@@ -79,6 +97,7 @@ export const Profile = () => {
           value={pet.description}
           onChange={handleInputChange}
         ></textarea>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

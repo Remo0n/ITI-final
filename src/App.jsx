@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkAuthStatus } from "./redux/authSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
 import About from "./components/About/About";
-
 import Articles from "./components/Articles/Articles";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 
@@ -22,13 +21,30 @@ import Vets from "./components/Vets/Vets";
 import Shop from "./components/Shop/Shop";
 import ShopItemDetails from "./components/Shop/ShopItemDetails";
 
+import "./i18n";
+import { useTranslation } from "react-i18next";
 
 const App = () => {
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+  console.log(currentLanguage);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(checkAuthStatus());
   }, [dispatch]);
+
+  //for translation
+  const rtlLanguages = ["ar"]; // Add other RTL languages if needed
+
+  function isRtlLanguage(language) {
+    return rtlLanguages.includes(language);
+  }
+  useEffect(() => {
+    const currentLanguage = i18n.language;
+    const direction = isRtlLanguage(currentLanguage) ? "rtl" : "ltr";
+    document.documentElement.setAttribute("dir", direction);
+  }, [i18n.language]);
 
   return (
     <Router>
@@ -39,7 +55,7 @@ const App = () => {
         <Route path="/vets" element={<Vets />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/shop/:id" element={<ShopItemDetails/>} />
+        <Route path="/shop/:id" element={<ShopItemDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/GoogleMaps" element={<Maps />} />
         {user && <Route path="/profile" element={<Profile />} />}

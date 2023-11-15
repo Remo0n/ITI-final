@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useGetShopItems from "../../hooks/useGetShopApi";
 
 import "./ShopItemDetails.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 function ShopItemDetails() {
   const params = useParams();
@@ -62,7 +64,9 @@ function ShopItemDetails() {
           <div>
             <h5>Seller Info:</h5>
             <p><span className="fw-semibold">Seller Name:</span> {item.seller}</p>
-            <p><span className="fw-semibold">Address:</span> {item.seller_address}</p>
+            <p><span className="fw-semibold">Address:</span> {item.seller_address} 
+            <Link to={'/GoogleMaps/'+item.seller_location.lat+'/'+item.seller_location.lng}><FontAwesomeIcon icon={faLocationDot} />Location</Link>
+            </p>
           </div>
         </div>
       </div>

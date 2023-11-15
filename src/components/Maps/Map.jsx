@@ -9,11 +9,21 @@ import {
 import Places from "./Places";
 import Distance from "./distance";
 import "../Maps/MapsStyle.css";
+import { useParams } from "react-router";
+
+export default function Map() {
+
+  const params = useParams();
+  useEffect(() => {
+    console.log(params)
+  }, [])
+  
 import p4 from "../../Assets/4.webp";
 import { Trans, useTranslation } from "react-i18next";
 
 export default function Map() {
   const { t, i18n } = useTranslation();
+
 
   const options = useMemo(
     () => ({

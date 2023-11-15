@@ -10,8 +10,11 @@ import Places from "./Places";
 import Distance from "./distance";
 import "../Maps/MapsStyle.css";
 import p4 from "../../Assets/4.webp";
+import { Trans, useTranslation } from "react-i18next";
 
 export default function Map() {
+  const { t, i18n } = useTranslation();
+
   const options = useMemo(
     () => ({
       mapId: "2d513d4218f0ad24",
@@ -150,7 +153,7 @@ export default function Map() {
       <div className="row">
         <div className="col-md-3">
           <div className="w-100 ">
-            <h5>Use Search Engine</h5>
+            <h5>{t("Search For Another Vet")}</h5>
             <button
               className="btn btn-primary"
               onClick={handleGoToLocationClick}

@@ -33,12 +33,22 @@ export const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const userRef = doc(db, "users", user.uid);
+
     try {
-      await setDoc(doc(db, "users", user.uid), {
-        petProfile: {
-          pet,
-        },
-      });
+      // Get the current user document
+      const docSnap = await getDoc(userRef);
+      if (docSnap.exists()) {
+        // User document exists, update it
+        await updateDoc(userRef, {
+          petProfiles: arrayUnion(pet),
+        });
+      } else {
+        // User document does not exist, create a new one
+        await setDoc(userRef, {
+          petProfiles: [pet],
+        });
+      }
     } catch (error) {
       console.log(error);
     }

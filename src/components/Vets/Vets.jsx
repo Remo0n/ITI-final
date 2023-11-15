@@ -4,6 +4,7 @@ import VetCard from "./VetCard";
 import { axiosShop } from "../../services/axiosShopConfig";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
 import "./Vets.css";
+import { useTranslation } from "react-i18next";
 
 const Vets = () => {
   const [data, setData] = useState({});
@@ -11,14 +12,19 @@ const Vets = () => {
   const [selected, setSelected] = useState("");
   const [areas, setAreas] = useState([]);
   const [spinner, setSpinner] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  //this is the new solution
+  const currentLng = i18n.language;
 
   const rederingVets = () => {
     setSpinner(true);
     axiosShop.get("/items/vets").then((res) => {
       console.log(res.data);
-      setAreas(Object.keys(res.data));
+      console.log(res.data[currentLng]);
+      setAreas(Object.keys(res.data[currentLng]));
       console.log(areas);
-      setData(res.data);
+      setData(res.data[currentLng]);
     });
     setFilteredData(data[selected]);
     setSpinner(false);
@@ -26,13 +32,30 @@ const Vets = () => {
 
   useEffect(() => {
     rederingVets();
-  }, [selected]);
+  }, [selected, currentLng]);
+
+  // this is the old solution
+  // const rederingVets = () => {
+  //   setSpinner(true);
+  //   axiosShop.get("/items/vets").then((res) => {
+  //     console.log(res.data);
+  //     setAreas(Object.keys(res.data));
+  //     console.log(areas);
+  //     setData(res.data);
+  //   });
+  //   setFilteredData(data[selected]);
+  //   setSpinner(false);
+  // };
+
+  // useEffect(() => {
+  //   rederingVets();
+  // }, [selected]);
 
   return (
     <section className="vets bg-warning-subtle pb-5">
       <div className="vets_title position-relative col-12">
         <h2 className="position-absolute top-50 start-50 translate-middle text-white fw-bold">
-          Vets
+          {t("Vets")}
         </h2>
       </div>
       <div className="container">
@@ -43,12 +66,12 @@ const Vets = () => {
             }}
           >
             {areas.length === 0 ? (
-              <option>please wait we are collecting data</option>
+              <option>{t("please wait we are collecting data")}</option>
             ) : (
-              <option className="option">Select Your Area</option>
+              <option className="option">{t("Select Your Area")}</option>
             )}
 
-            {areas.sort().map((area, index) => (
+            {areas?.sort().map((area, index) => (
               <option className="option" key={index} value={area}>
                 {area}
               </option>

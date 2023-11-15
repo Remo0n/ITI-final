@@ -9,8 +9,12 @@ import {
 import Places from "./Places";
 import Distance from "./distance";
 import "../Maps/MapsStyle.css";
+import p4 from "../../Assets/4.webp";
+import { Trans, useTranslation } from "react-i18next";
 
 export default function Map() {
+  const { t, i18n } = useTranslation();
+
   const options = useMemo(
     () => ({
       mapId: "2d513d4218f0ad24",
@@ -49,6 +53,7 @@ export default function Map() {
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(userLocation);
+    console.log("userLocation", userLocation);
     map.fitBounds(bounds);
     mapRef.current = map;
     setMap(map);
@@ -58,7 +63,7 @@ export default function Map() {
   }, []);
   // const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
   const center = useMemo(() => ({ lat: 31.2156, lng: 29.9553 }), []);
-  let x = 2;
+  let x = 3;
   const [goToLocationClicked, setGoToLocationClicked] = useState(false);
   const handleGoToLocationClick = () => {
     if (userLocation) {
@@ -86,7 +91,7 @@ export default function Map() {
         setUserLocationMarker({
           position: { lat: latitude, lng: longitude },
           icon: {
-            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+            url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
             scaledSize: new window.google.maps.Size(30, 30),
           },
         });
@@ -97,7 +102,7 @@ export default function Map() {
   }, [map]);
 
   useEffect(() => {
-    if (x === 3 && userLocation && map) {
+    if (x === 2 && userLocation && map) {
       handleGoToLocationClick();
       console.log("map loaded");
     }
@@ -109,7 +114,7 @@ export default function Map() {
 
       const request = {
         location: userLocation,
-        radius: "500000",
+        radius: "5000",
         type: ["veterinary_care"],
       };
 
@@ -148,12 +153,12 @@ export default function Map() {
       <div className="row">
         <div className="col-md-3">
           <div className="w-100 ">
-            <h5>Use Search Engine</h5>
+            <h5>{t("Search For Another Vet")}</h5>
             <button
               className="btn btn-primary"
               onClick={handleGoToLocationClick}
             >
-              Go To Location
+              Go To Alex
             </button>
             <Places
               className="w-100"
@@ -169,7 +174,7 @@ export default function Map() {
           <div className="map">
             <GoogleMap
               mapContainerClassName="map-container"
-              center={center}
+              center={userLocation || center}
               zoom={6}
               onLoad={onLoad}
               options={options}
@@ -225,7 +230,7 @@ export default function Map() {
                           color: "white",
                         }}
                         icon={{
-                          url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                          url: p4,
                           scaledSize: new window.google.maps.Size(40, 40),
                         }}
                         clusterer={clusterer}

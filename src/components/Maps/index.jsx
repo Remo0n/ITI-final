@@ -1,10 +1,6 @@
 import { useLoadScript } from "@react-google-maps/api";
 import Map from "./Map";
-
-
-
-
-import Loader from "./loader";
+import LoadingSpinner from "../../Shared/LoadingSpinner";
 const libraries = ["places"];
 
 export default function Home() {
@@ -13,6 +9,6 @@ export default function Home() {
     libraries: libraries,
   });
 
-  if (!isLoaded) return <Loader />;
+  if (!isLoaded) return <LoadingSpinner />;
   return <Map />;
 }

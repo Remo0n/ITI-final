@@ -1,0 +1,18 @@
+.vets_title {
+  background-image: url(../../assets/bgr.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 20rem;
+}
+.vets_title h2 {
+  font-size: 5rem !important;
+}
+
+.form-select {
+  color: rgb(88, 88, 86);
+  font-weight: bold;
+}
+.option {
+  color: rgb(88, 88, 86);
+  background-color: rgb(217, 221, 221);
+}

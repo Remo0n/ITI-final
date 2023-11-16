@@ -9,7 +9,7 @@ import "./Articles.css";
 const Articles = () => {
   const [articlesData, setArticlesData] = useState({});
   const [filteredData, setFilteredData] = useState([]);
-  const [checkedValue, setCheckedValue] = useState("Dogs");
+  const [checkedValue, setCheckedValue] = useState("");
   const [spinner, setSpinner] = useState(false);
   const { t, i18n } = useTranslation();
 
@@ -19,6 +19,18 @@ const Articles = () => {
   const currentLng = i18n.language;
 
   //This was the new solution
+  // if (currentLng == "ar") {
+  //   setCheckedValue("كلاب");
+  // } else if (currentLng == "en") {
+  //   setCheckedValue("Dogs");
+  // }
+  useEffect(() => {
+    if (currentLng == "ar") {
+      setCheckedValue("كلاب");
+    } else if (currentLng == "en") {
+      setCheckedValue("Dogs");
+    }
+  }, [currentLng]);
 
   const rendringArticlesData = () => {
     setSpinner(true);
@@ -87,7 +99,7 @@ const Articles = () => {
               name="btnradio"
               id="btnradio1"
               autoComplete="off"
-              value={"Dogs"}
+              value={t("Dogs")}
               onChange={(e) => setCheckedValue(e.target.value)}
             />
             <label
@@ -103,7 +115,7 @@ const Articles = () => {
               name="btnradio"
               id="btnradio2"
               autoComplete="off"
-              value="Cats"
+              value={t("Cats")}
               onChange={(e) => {
                 setCheckedValue(e.target.value);
               }}
@@ -121,7 +133,7 @@ const Articles = () => {
               name="btnradio"
               id="btnradio3"
               autoComplete="off"
-              value="Birds"
+              value={t("Birds")}
               onChange={(e) => setCheckedValue(e.target.value)}
             />
             <label
@@ -145,7 +157,7 @@ const Articles = () => {
         ) : (
           <div className="d-flex justify-content-center">
             <Link className="btn btn-outline-primary " to="/articles">
-              Show More
+              {t("Show More")}
             </Link>
           </div>
         )}

@@ -8,9 +8,19 @@ import {
 } from "@react-google-maps/api";
 import Places from "./Places";
 import Distance from "./distance";
+import { useParams } from "react-router";
 import "../Maps/MapsStyle.css";
 
+// import p4 from "../../Assets/ser3.png";
+import p4 from "../../Assets/4.webp";
+
+import { useTranslation } from "react-i18next";
+
 export default function Map() {
+  const { t } = useTranslation();
+
+  const params = useParams();
+
   const options = useMemo(
     () => ({
       mapId: "2d513d4218f0ad24",
@@ -49,6 +59,7 @@ export default function Map() {
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(userLocation);
+    console.log("userLocation", userLocation);
     map.fitBounds(bounds);
     mapRef.current = map;
     setMap(map);
@@ -58,27 +69,26 @@ export default function Map() {
   }, []);
   // const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
   const center = useMemo(() => ({ lat: 31.2156, lng: 29.9553 }), []);
-  let x = 2;
   const [goToLocationClicked, setGoToLocationClicked] = useState(false);
+
   const handleGoToLocationClick = () => {
-    if (userLocation) {
-      // Set the destination coordinates
-      const destination = { lat: 31.2156, lng: 29.9553, zoom: 8 };
-      // Fetch directions from user location to the destination
-      fetchDirections({
-        geometry: {
-          location: new window.google.maps.LatLng(
-            destination.lat,
-            destination.lng
-          ),
-        },
-      });
-      // Optionally, you can pan the map to the destination
-      mapRef.current?.panTo(destination);
-      // Update the state to indicate that the button has been clicked
-      setGoToLocationClicked(true);
+    if (params.lat && params.lng) {
+      if (userLocation) {
+        const destination = {
+          lat: parseFloat(params.lat),
+          lng: parseFloat(params.lng),
+        };
+        fetchDirections({
+          geometry: {
+            location: new window.google.maps.LatLng(params.lat, params.lng),
+          },
+        });
+        mapRef.current?.panTo(destination);
+        setGoToLocationClicked(true);
+      }
     }
   };
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
@@ -86,7 +96,7 @@ export default function Map() {
         setUserLocationMarker({
           position: { lat: latitude, lng: longitude },
           icon: {
-            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+            url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
             scaledSize: new window.google.maps.Size(30, 30),
           },
         });
@@ -95,13 +105,9 @@ export default function Map() {
       (error) => {}
     );
   }, [map]);
-
   useEffect(() => {
-    if (x === 3 && userLocation && map) {
-      handleGoToLocationClick();
-      console.log("map loaded");
-    }
-  }, [x, userLocation, map]);
+    handleGoToLocationClick();
+  }, [params, map, userLocation]);
 
   useEffect(() => {
     if (userLocation && map) {
@@ -109,7 +115,7 @@ export default function Map() {
 
       const request = {
         location: userLocation,
-        radius: "500000",
+        radius: "5000",
         type: ["veterinary_care"],
       };
 
@@ -148,13 +154,7 @@ export default function Map() {
       <div className="row">
         <div className="col-md-3">
           <div className="w-100 ">
-            <h5>Use Search Engine</h5>
-            <button
-              className="btn btn-primary"
-              onClick={handleGoToLocationClick}
-            >
-              Go To Location
-            </button>
+            <h5>{t("Search For Another Vet")}</h5>
             <Places
               className="w-100"
               setOffice={(position) => {
@@ -169,7 +169,7 @@ export default function Map() {
           <div className="map">
             <GoogleMap
               mapContainerClassName="map-container"
-              center={center}
+              center={userLocation || center}
               zoom={6}
               onLoad={onLoad}
               options={options}
@@ -225,7 +225,7 @@ export default function Map() {
                           color: "white",
                         }}
                         icon={{
-                          url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                          url: p4,
                           scaledSize: new window.google.maps.Size(40, 40),
                         }}
                         clusterer={clusterer}

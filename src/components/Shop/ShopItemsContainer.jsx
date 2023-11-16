@@ -20,7 +20,6 @@ function ShopItemsContainer({ loading, displayArr }) {
     )
     return (
       <>
-      <div>ShopItemsContainer</div>
       <div className="row row-cols-lg-4 row-cols-md-3 row-cols-2 row-gap-5">
       {shopRender}
       </div>

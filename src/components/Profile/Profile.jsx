@@ -15,9 +15,8 @@ export const Profile = () => {
     status: "",
     image: null,
   });
-  const [petProfiles, setPetProfiles] = useState([]);
-  console.log(petProfiles);
 
+  const [petProfiles, setPetProfiles] = useState([]);
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -26,18 +25,17 @@ export const Profile = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setPet((prevPet) => ({
-      ...prevPet,
-      [name]: value,
-    }));
+    setPet((prevPet) => ({ ...prevPet, [name]: value }));
   };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
-    setPet((prevPet) => ({
-      ...prevPet,
-      image: file,
-    }));
+    if (file) {
+      setPet((prevPet) => ({ ...prevPet, image: file }));
+      // Show image preview
+      const imageUrl = URL.createObjectURL(file);
+      setPet((prevPet) => ({ ...prevPet, imagePreview: imageUrl }));
+    }
   };
 
   const colorOptions = [
@@ -54,13 +52,15 @@ export const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (pet.image) {
-      try {
+    try {
+      if (pet.image) {
         const imageUrl = await uploadImage(pet.image);
 
+        // Update the pet state only after the image upload is successful
         setPet((prevPet) => ({
           ...prevPet,
           image: imageUrl,
+          imagePreview: null, // Clear the image preview after upload
         }));
 
         const userRef = doc(db, "users", user.uid);
@@ -78,6 +78,7 @@ export const Profile = () => {
           setPetProfiles([pet]);
         }
 
+        // Clear the form fields after successful submission
         setPet({
           name: "",
           age: "",
@@ -87,9 +88,9 @@ export const Profile = () => {
           status: "",
           image: null,
         });
-      } catch (error) {
-        console.error("Error handling form submission:", error);
       }
+    } catch (error) {
+      console.error("Error handling form submission:", error);
     }
   };
 
@@ -128,8 +129,8 @@ export const Profile = () => {
     <div className="pet-profile">
       <div className="pet-profile__img-box">
         <label htmlFor="imageUpload">
-          {pet.image ? (
-            <img src={pet.image} alt="" />
+          {pet.imagePreview ? (
+            <img src={pet.imagePreview} alt="Preview" />
           ) : (
             <span>Upload Image</span>
           )}

@@ -158,10 +158,16 @@ export const Profile = () => {
         {petProfiles.map((x, index) => (
           <div className="pet-cards__box" key={index}>
             <img src={x.image} alt="" />
-            <h2> {x.name}</h2>
-            <p>color :{x.color}</p>
-            <p>age :{x.age}</p>
-            <p>status :{x.status}</p>
+            <h2>{x.name}</h2>
+            <p>
+              <strong>Color:</strong> {x.color}
+            </p>
+            <p>
+              <strong>Age:</strong> {x.age}
+            </p>
+            <p>
+              <strong>Status:</strong> {x.status}
+            </p>
           </div>
         ))}
       </div>

@@ -74,12 +74,16 @@
 }
 .pet-profile .pet-cards .pet-cards__box {
   width: 30%;
+  background: url("../../assets/card2.png");
   padding: 10px 25px;
   box-shadow: 0px 0px 2px 0px #707070;
   border-radius: 15px;
   margin: 20px auto;
   height: 350px;
   overflow: hidden;
+}
+.pet-profile .pet-cards .pet-cards__box h2 {
+  padding: 3px 0px 15px 3px;
 }
 .pet-profile .pet-cards .pet-cards__box dev {
   display: flex;

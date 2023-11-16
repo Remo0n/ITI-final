@@ -8,14 +8,16 @@ import {
 } from "@react-google-maps/api";
 import Places from "./Places";
 import Distance from "./distance";
-import "../Maps/MapsStyle.css";
 import { useParams } from "react-router";
+import "../Maps/MapsStyle.css";
 
+// import p4 from "../../Assets/ser3.png";
 import p4 from "../../Assets/4.webp";
-import { Trans, useTranslation } from "react-i18next";
+
+import { useTranslation } from "react-i18next";
 
 export default function Map() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const params = useParams();
 
@@ -67,7 +69,6 @@ export default function Map() {
   }, []);
   // const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
   const center = useMemo(() => ({ lat: 31.2156, lng: 29.9553 }), []);
-  let x = 3;
   const [goToLocationClicked, setGoToLocationClicked] = useState(false);
 
   const handleGoToLocationClick = () => {

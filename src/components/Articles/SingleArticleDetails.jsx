@@ -7,8 +7,7 @@ import { Card } from "react-bootstrap";
 import "./SingleArticleDetails.css";
 
 const SingleArticleDetails = () => {
-  const params = useParams();
-  const filterId = params.id;
+ 
 
   const [articlesData, setArticlesData] = useState({});
   const [selectedArticle, setSelectedArticle] = useState({});
@@ -17,12 +16,16 @@ const SingleArticleDetails = () => {
 
   const currentLng = i18n.language;
 
+  const params = useParams();
+  const filterId = params.id;
+  const petCategory=params.petCategory
+
   const rendringArticlesData = () => {
     setSpinner(true);
     axiosShop.get(`/items/newArticles`).then((res) => {
       setArticlesData(res.data);
 
-      const dataToFilter = res.data[currentLng][params.petCategory];
+      const dataToFilter = res.data[currentLng][petCategory];
 
       const foundArticle = dataToFilter?.find((art) => art.id == filterId);
       console.log(foundArticle);
@@ -34,12 +37,15 @@ const SingleArticleDetails = () => {
 
   useEffect(() => {
     rendringArticlesData();
-  }, [currentLng, params.petCategory]);
+  }, [currentLng, petCategory]);
+
+  if (spinner) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="detailspage py-5 bg-warning-subtle">
       <div className="container">
-        {spinner ? <LoadingSpinner /> : ""}
         <Card>
           {/* <Card.Img variant="top" src={selectedArticle?.articleFig} /> */}
           <Card.Body className="articlecardbody_details rounded shadow p-5">

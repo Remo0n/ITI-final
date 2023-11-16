@@ -14,7 +14,7 @@ import Articles from "./components/Articles/Articles";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 
 import Maps from "./components/Maps";
-import { Profile } from "./components/Profile/Profile";
+import  Profile  from "./components/Profile/Profile";
 
 import Vets from "./components/Vets/Vets";
 

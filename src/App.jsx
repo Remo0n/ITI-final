@@ -23,6 +23,7 @@ import ShopItemDetails from "./components/Shop/ShopItemDetails";
 
 import "./i18n";
 import { useTranslation } from "react-i18next";
+import SingleArticleDetails from "./components/Articles/SingleArticleDetails";
 
 const App = () => {
   const { i18n } = useTranslation();
@@ -54,6 +55,10 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/vets" element={<Vets />} />
         <Route path="/articles" element={<Articles />} />
+        <Route
+            path="/articles/:petCategory/:id"
+            element={<SingleArticleDetails/>}
+          ></Route>
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<ShopItemDetails />} />
         <Route path="/about" element={<About />} />

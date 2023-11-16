@@ -3,13 +3,14 @@ import runcat from "../../assets/runningcat.jpg";
 import "./RegisterNow.css";
 import { useTranslation, initReactI18next } from "react-i18next";
 
+
 const RegisterNow = () => {
   const { t } = useTranslation();
   return (
     <section className="registernow py-5 bg-warning-subtle">
       <div className="container">
-        <div className="row rounded shadow bg-light">
-          <div className="col-lg-4 col-12 p-0">
+        <div className="card_registernow  row rounded shadow bg-light ">
+          <div className="col-lg-4 col-12 p-0 ">
             <div>
               <img
                 className="w-100 rounded-start"

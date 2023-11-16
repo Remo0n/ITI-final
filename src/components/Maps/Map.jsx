@@ -150,94 +150,96 @@ export default function Map() {
   };
 
   return (
-    <div className="container mb-3  mt-3">
-      <div className="row">
-        <div className="col-md-3">
-          <div className="w-100 ">
-            <h5>{t("Search For Another Vet")}</h5>
-            <Places
-              className="w-100"
-              setOffice={(position) => {
-                setOffice(position);
-                mapRef.current?.panTo(position);
-              }}
-            />
-            {directions && <Distance leg={directions.routes[0].legs[0]} />}
+    <div className="mapsection py-5 bg-warning-subtle">
+      <div className="container mb-3  mt-3">
+        <div className="row">
+          <div className="col-md-3">
+            <div className="w-100 ">
+              <h5>{t("Search For Another Vet")}</h5>
+              <Places
+                className="w-100"
+                setOffice={(position) => {
+                  setOffice(position);
+                  mapRef.current?.panTo(position);
+                }}
+              />
+              {directions && <Distance leg={directions.routes[0].legs[0]} />}
+            </div>
           </div>
-        </div>
-        <div className="col-md-9">
-          <div className="map">
-            <GoogleMap
-              mapContainerClassName="map-container"
-              center={userLocation || center}
-              zoom={6}
-              onLoad={onLoad}
-              options={options}
-              onUnmount={onUnmount}
-            >
-              {directions && (
-                <DirectionsRenderer
-                  directions={directions}
-                  options={{
-                    polylineOptions: {
-                      zIndex: 50,
-                      strokeColor: "#1976D2",
-                      strokeWeight: 5,
-                    },
-                  }}
-                />
-              )}
-              {userLocationMarker && (
-                <>
-                  <Marker
-                    position={userLocationMarker.position}
-                    icon={userLocationMarker.icon}
+          <div className="col-md-9">
+            <div className="map">
+              <GoogleMap
+                mapContainerClassName="map-container"
+                center={userLocation || center}
+                zoom={6}
+                onLoad={onLoad}
+                options={options}
+                onUnmount={onUnmount}
+              >
+                {directions && (
+                  <DirectionsRenderer
+                    directions={directions}
+                    options={{
+                      polylineOptions: {
+                        zIndex: 50,
+                        strokeColor: "#1976D2",
+                        strokeWeight: 5,
+                      },
+                    }}
                   />
-                  <Circle
-                    center={userLocation}
-                    radius={1500}
-                    options={closeOptions}
-                  />
-                  <Circle
-                    center={userLocation}
-                    radius={3000}
-                    options={middleOptions}
-                  />
-                  <Circle
-                    center={userLocation}
-                    radius={4500}
-                    options={farOptions}
-                  />
-                </>
-              )}
-              {veterinarians.length > 0 && (
-                <MarkerClusterer>
-                  {(clusterer) =>
-                    veterinarians.map((vet) => (
-                      <Marker
-                        key={vet.place_id}
-                        position={{
-                          lat: vet.geometry.location.lat(),
-                          lng: vet.geometry.location.lng(),
-                        }}
-                        label={{
-                          text: vet.name,
-                          color: "white",
-                        }}
-                        icon={{
-                          url: p4,
-                          scaledSize: new window.google.maps.Size(40, 40),
-                        }}
-                        clusterer={clusterer}
-                        onClick={() => {
-                          fetchDirections(vet);
-                        }}
-                      />
-                    ))
-                  }
-                </MarkerClusterer>
-              )}
-            </GoogleMap>
+                )}
+                {userLocationMarker && (
+                  <>
+                    <Marker
+                      position={userLocationMarker.position}
+                      icon={userLocationMarker.icon}
+                    />
+                    <Circle
+                      center={userLocation}
+                      radius={1500}
+                      options={closeOptions}
+                    />
+                    <Circle
+                      center={userLocation}
+                      radius={3000}
+                      options={middleOptions}
+                    />
+                    <Circle
+                      center={userLocation}
+                      radius={4500}
+                      options={farOptions}
+                    />
+                  </>
+                )}
+                {veterinarians.length > 0 && (
+                  <MarkerClusterer>
+                    {(clusterer) =>
+                      veterinarians.map((vet) => (
+                        <Marker
+                          key={vet.place_id}
+                          position={{
+                            lat: vet.geometry.location.lat(),
+                            lng: vet.geometry.location.lng(),
+                          }}
+                          label={{
+                            text: vet.name,
+                            color: "white",
+                          }}
+                          icon={{
+                            url: p4,
+                            scaledSize: new window.google.maps.Size(40, 40),
+                          }}
+                          clusterer={clusterer}
+                          onClick={() => {
+                            fetchDirections(vet);
+                          }}
+                        />
+                      ))
+                    }
+                  </MarkerClusterer>
+                )}
+              </GoogleMap>
+            </div>
           </div>
         </div>
       </div>

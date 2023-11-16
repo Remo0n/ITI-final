@@ -20,7 +20,7 @@
 .pet-profile form .form-box {
   padding: 10px 40px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 .pet-profile__img-box label {
@@ -38,14 +38,17 @@
   background: #f9f9f9;
 }
 .pet-profile input,
-.pet-profile textarea {
+.pet-profile textarea,
+.pet-profile select {
   width: 100%;
+  height: 50px;
   outline: none;
   border: 1px solid #dcdbdb;
   padding: 0px 10px;
 }
 .pet-profile input:focus,
-.pet-profile textarea :focus {
+.pet-profile textarea:focus,
+.pet-profile select :focus {
   box-shadow: 0px 0px 2px 0px black;
 }
 .pet-profile__img-box {
@@ -79,7 +82,7 @@
   box-shadow: 0px 0px 2px 0px #707070;
   border-radius: 15px;
   margin: 20px auto;
-  height: 350px;
+  height: 400px;
   overflow: hidden;
 }
 .pet-profile .pet-cards .pet-cards__box h2 {

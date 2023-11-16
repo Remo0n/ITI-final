@@ -9,11 +9,12 @@ export const Profile = () => {
   const [pet, setPet] = useState({
     name: "",
     age: "",
-    color: "",
+    color: "white",
+    sex: "Male",
+    Vaccines: "",
     status: "",
     image: null,
   });
-
   const [petProfiles, setPetProfiles] = useState([]);
   console.log(petProfiles);
 
@@ -39,36 +40,56 @@ export const Profile = () => {
     }));
   };
 
+  const colorOptions = [
+    "white",
+    "black",
+    "gray",
+    "Red",
+    "Blue",
+    "Green",
+    "Yellow",
+    "Orange",
+  ];
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // Upload image to Firebase Storage
-      if (pet.image) {
+
+    if (pet.image) {
+      try {
         const imageUrl = await uploadImage(pet.image);
-        // Set the image URL directly in the pet state
+
         setPet((prevPet) => ({
           ...prevPet,
           image: imageUrl,
         }));
-      }
 
-      const userRef = doc(db, "users", user.uid);
+        const userRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(userRef);
 
-      const docSnap = await getDoc(userRef);
+        if (docSnap.exists()) {
+          await updateDoc(userRef, {
+            petProfiles: arrayUnion(pet),
+          });
+          setPetProfiles((prevProfiles) => [...prevProfiles, pet]);
+        } else {
+          await setDoc(userRef, {
+            petProfiles: [pet],
+          });
+          setPetProfiles([pet]);
+        }
 
-      if (docSnap.exists()) {
-        await updateDoc(userRef, {
-          petProfiles: arrayUnion(pet),
+        setPet({
+          name: "",
+          age: "",
+          color: "white",
+          sex: "Male",
+          Vaccines: "",
+          status: "",
+          image: null,
         });
-        setPetProfiles((prevProfiles) => [...prevProfiles, pet]);
-      } else {
-        await setDoc(userRef, {
-          petProfiles: [pet],
-        });
-        setPetProfiles([pet]);
+      } catch (error) {
+        console.error("Error handling form submission:", error);
       }
-    } catch (error) {
-      console.error("Error handling form submission:", error);
     }
   };
 
@@ -136,19 +157,33 @@ export const Profile = () => {
             value={pet.age}
             onChange={handleInputChange}
           />
-          <input
+          <select name="color" value={pet.color} onChange={handleInputChange}>
+            {colorOptions.map((color, index) => (
+              <option key={index} value={color}>
+                {color}
+              </option>
+            ))}
+          </select>
+          <select name="sex" value={pet.sex} onChange={handleInputChange}>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+
+          <textarea
             type="text"
-            name="color"
-            placeholder="Color"
-            value={pet.color}
+            name="Vaccines"
+            placeholder="Vaccines"
+            value={pet.Vaccines}
+            maxLength={100}
             onChange={handleInputChange}
-          />
+          ></textarea>
           <textarea
             rows="2"
             cols="50"
             name="status"
             placeholder="status"
             value={pet.status}
+            maxLength={100}
             onChange={handleInputChange}
           ></textarea>
         </div>
@@ -159,11 +194,11 @@ export const Profile = () => {
           <div className="pet-cards__box" key={index}>
             <img src={x.image} alt="" />
             <h2>{x.name}</h2>
+            <p>{x.sex}</p>
+            <p>{x.age} year</p>
+            <p>{x.color}</p>
             <p>
-              <strong>Color:</strong> {x.color}
-            </p>
-            <p>
-              <strong>Age:</strong> {x.age}
+              <strong>Vaccines:</strong> {x.Vaccines}
             </p>
             <p>
               <strong>Status:</strong> {x.status}

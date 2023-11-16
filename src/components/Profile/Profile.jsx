@@ -16,6 +16,7 @@ export const Profile = () => {
 
   const [petProfiles, setPetProfiles] = useState([]);
   console.log(petProfiles);
+
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -151,8 +152,19 @@ export const Profile = () => {
             onChange={handleInputChange}
           ></textarea>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit"> Add Pet</button>
       </form>
+      <div className="pet-cards">
+        {petProfiles.map((x, index) => (
+          <div className="pet-cards__box" key={index}>
+            <img src={x.image} alt="" />
+            <h2> {x.name}</h2>
+            <p>color :{x.color}</p>
+            <p>age :{x.age}</p>
+            <p>status :{x.status}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

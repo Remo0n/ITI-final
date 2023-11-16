@@ -1,7 +1,7 @@
 .pet-profile {
   min-height: 499px;
 }
-.pet-profile img {
+.pet-profile pet-profile__img-box img {
   width: 150px;
   height: 150px;
   object-fit: cover;
@@ -42,6 +42,7 @@
   width: 100%;
   outline: none;
   border: 1px solid #dcdbdb;
+  padding: 0px 10px;
 }
 .pet-profile input:focus,
 .pet-profile textarea :focus {
@@ -63,4 +64,30 @@
   margin: 24px 2px;
   cursor: pointer;
   border-radius: 5px;
+}
+.pet-profile .pet-cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 60px;
+}
+.pet-profile .pet-cards .pet-cards__box {
+  width: 30%;
+  padding: 10px 25px;
+  box-shadow: 0px 0px 2px 0px #707070;
+  border-radius: 15px;
+  margin: 20px auto;
+  height: 350px;
+  overflow: hidden;
+}
+.pet-profile .pet-cards .pet-cards__box dev {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pet-profile .pet-cards .pet-cards__box img {
+  width: 100px;
+  border-radius: 50%;
+  margin: 5px 75px;
 }

@@ -149,20 +149,20 @@ export default function Map() {
   };
 
   return (
-    <div className="mapsection py-5 bg-warning-subtle">
-      <div className="container mb-3  mt-3">
-        <div className="row">
-          <div className="col-md-3">
-            <div className="w-100 ">
-              <h5>{t("Search For Another Vet")}</h5>
-              <Places
-                className="w-100"
-                setOffice={(position) => {
-                  setOffice(position);
-                  mapRef.current?.panTo(position);
-                }}
-              />
-              {directions && <Distance leg={directions.routes[0].legs[0]} />}
+        <div className="mapsection py-5 bg-warning-subtle">
+    <div className="container mb-3  mt-3">
+      <div className="row ">
+        <div className="col-md-3 mb-3 mb-lg-0 ">
+          <div className="w-100 map-info">
+            <h5>{t("Search For Another Vet")}</h5>
+            <Places
+              className="w-100"
+              setOffice={(position) => {
+                setOffice(position);
+                mapRef.current?.panTo(position);
+              }}
+            />
+            {directions && <Distance leg={directions.routes[0].legs[0]} />}
             </div>
           </div>
           <div className="col-md-9">

@@ -7,10 +7,10 @@ import { Card } from "react-bootstrap";
 import "./SingleArticleDetails.css";
 
 const SingleArticleDetails = () => {
-  const [articlesData, setArticlesData] = useState({});
+  const [setArticlesData] = useState({});
   const [selectedArticle, setSelectedArticle] = useState({});
   const [spinner, setSpinner] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   const currentLng = i18n.language;
 
@@ -43,7 +43,6 @@ const SingleArticleDetails = () => {
     <div className="detailspage py-5 bg-warning-subtle">
       <div className="container">
         <Card>
-          {/* <Card.Img variant="top" src={selectedArticle?.articleFig} /> */}
           <Card.Body className="articlecardbody_details rounded shadow p-5">
             <Card.Title className="fs-4 fw-bold mb-4">
               {selectedArticle?.infoTitle}

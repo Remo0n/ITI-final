@@ -59,7 +59,6 @@ export default function Map() {
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(userLocation);
-    console.log("userLocation", userLocation);
     map.fitBounds(bounds);
     mapRef.current = map;
     setMap(map);

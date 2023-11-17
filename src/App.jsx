@@ -14,7 +14,7 @@ import Articles from "./components/Articles/Articles";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 
 import Maps from "./components/Maps";
-import  Profile  from "./components/Profile/Profile";
+import Profile from "./components/Profile/Profile";
 
 import Vets from "./components/Vets/Vets";
 
@@ -27,11 +27,10 @@ import SingleArticleDetails from "./components/Articles/SingleArticleDetails";
 
 const App = () => {
   const { i18n } = useTranslation();
-  const currentLanguage = i18n.language;
-  console.log(currentLanguage);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   useEffect(() => {
+    console.log("checkauth");
     dispatch(checkAuthStatus());
   }, [dispatch]);
 
@@ -56,9 +55,9 @@ const App = () => {
         <Route path="/vets" element={<Vets />} />
         <Route path="/articles" element={<Articles />} />
         <Route
-            path="/articles/:petCategory/:id"
-            element={<SingleArticleDetails/>}
-          ></Route>
+          path="/articles/:petCategory/:id"
+          element={<SingleArticleDetails />}
+        ></Route>
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<ShopItemDetails />} />
         <Route path="/about" element={<About />} />
@@ -81,7 +80,6 @@ const App = () => {
           }
         />
         <Route path="*" element={<NotFoundPage />} />{" "}
-
         <Route
           path="/GoogleMaps"
           element={

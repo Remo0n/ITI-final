@@ -7,8 +7,6 @@ import { Card } from "react-bootstrap";
 import "./SingleArticleDetails.css";
 
 const SingleArticleDetails = () => {
- 
-
   const [articlesData, setArticlesData] = useState({});
   const [selectedArticle, setSelectedArticle] = useState({});
   const [spinner, setSpinner] = useState(false);
@@ -18,7 +16,7 @@ const SingleArticleDetails = () => {
 
   const params = useParams();
   const filterId = params.id;
-  const petCategory=params.petCategory
+  const petCategory = params.petCategory;
 
   const rendringArticlesData = () => {
     setSpinner(true);
@@ -28,9 +26,7 @@ const SingleArticleDetails = () => {
       const dataToFilter = res.data[currentLng][petCategory];
 
       const foundArticle = dataToFilter?.find((art) => art.id == filterId);
-      console.log(foundArticle);
       setSelectedArticle(foundArticle);
-      console.log(selectedArticle);
     });
     setSpinner(false);
   };

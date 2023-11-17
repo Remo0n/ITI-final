@@ -14,7 +14,6 @@ const Articles = () => {
   const { t, i18n } = useTranslation();
 
   let locationUrl = useLocation();
-  console.log(locationUrl.pathname);
 
   const currentLng = i18n.language;
 
@@ -73,7 +72,7 @@ const Articles = () => {
 
 */
   if (spinner) {
-    return <LoadingSpinner/>;
+    return <LoadingSpinner />;
   }
   return (
     <section className="articles pb-5 bg-warning-subtle ">
@@ -111,7 +110,6 @@ const Articles = () => {
               className="btn rounded btn-outline-primary me-5"
               htmlFor="btnradio1"
             >
-              
               {t("Dogs")}
             </label>
 

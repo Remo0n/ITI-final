@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
 import { setUser } from "../../redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -10,13 +11,14 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import "./Nav.css";
 
-import { useTranslation, initReactI18next } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const NavComponent = () => {
   const lngs = {
     en: { nativeName: "English" },
     ar: { nativeName: "العربية" },
   };
+  const navigate = useNavigate();
 
   const { t, i18n } = useTranslation();
   const { user } = useSelector((state) => state.auth);
@@ -28,6 +30,7 @@ const NavComponent = () => {
     try {
       await signOut(auth); // Sign out the user
       dispatch(setUser(null)); // Set the user to null in the Redux store
+      navigate("/");
     } catch (error) {
       console.error("Error signing out: ", error);
     }

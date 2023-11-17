@@ -30,7 +30,6 @@ const App = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   useEffect(() => {
-    console.log("checkauth");
     dispatch(checkAuthStatus());
   }, [dispatch]);
 

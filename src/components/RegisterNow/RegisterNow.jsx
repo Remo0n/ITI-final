@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import runcat from "../../assets/runningcat.jpg";
 import "./RegisterNow.css";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 
 const RegisterNow = () => {

@@ -7,7 +7,6 @@ import { Card } from "react-bootstrap";
 import "./SingleArticleDetails.css";
 
 const SingleArticleDetails = () => {
-  const [setArticlesData] = useState({});
   const [selectedArticle, setSelectedArticle] = useState({});
   const [spinner, setSpinner] = useState(false);
   const { i18n } = useTranslation();
@@ -21,8 +20,6 @@ const SingleArticleDetails = () => {
   const rendringArticlesData = () => {
     setSpinner(true);
     axiosShop.get(`/items/newArticles`).then((res) => {
-      setArticlesData(res.data);
-
       const dataToFilter = res.data[currentLng][petCategory];
 
       const foundArticle = dataToFilter?.find((art) => art.id == filterId);

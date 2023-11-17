@@ -28,27 +28,3 @@ const Hero = () => {
 
 export default Hero;
 
-/*   <Carousel indicators={false}>
-    //   <Carousel.Item interval={50000}>
-    //     { <img className="w-100" src={p1} /> }
-
-    //     <div className="d-flex align-items-center justify-content-center">
-    //       <div className="hero_info col-4">
-    //         <h1 className="hero_info_title text-white fw-light">
-    //           We Care <span className="fw-bold">Your Pets</span>
-    //         </h1>
-    //         home
-    //         <p className="hero_info_desc">Welcome to your pet's second </p>
-    //       </div>
-    //       <figure className="hero_gallery col-6">
-    //         <img className="w-100" src={p4} alt="hero_img" />
-    //       </figure>
-    //     </div>
-    //   </Carousel.Item>
-    //   {/* <Carousel.Item>
-    //     <img className="w-100" src={p2} />
-    //   </Carousel.Item>
-    //   <Carousel.Item>
-    //     <img className="w-100" src={p3} />
-    //   </Carousel.Item> }
-    // </Carousel>*/

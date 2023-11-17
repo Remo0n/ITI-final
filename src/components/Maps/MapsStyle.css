@@ -2,3 +2,9 @@
   width: 100%;
   height: calc(100vh - 92px);
 }
+
+.map-info {
+  background-image: url(../../assets/card2.png);
+  padding: 10px;
+  color: #ea4335;
+}

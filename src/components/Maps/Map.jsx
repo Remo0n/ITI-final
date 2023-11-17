@@ -151,9 +151,9 @@ export default function Map() {
 
   return (
     <div className="container mb-3  mt-3">
-      <div className="row">
-        <div className="col-md-3">
-          <div className="w-100 ">
+      <div className="row ">
+        <div className="col-md-3 mb-3 mb-lg-0 ">
+          <div className="w-100 map-info">
             <h5>{t("Search For Another Vet")}</h5>
             <Places
               className="w-100"

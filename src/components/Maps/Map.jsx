@@ -164,7 +164,6 @@ export default function Map() {
               />
               {directions && <Distance leg={directions.routes[0].legs[0]} />}
             </div>
-            in
           </div>
           <div className="col-md-9">
             <div className="map">

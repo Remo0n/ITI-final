@@ -9,7 +9,7 @@ const SingleService = (props) => {
           variant="top"
           src={props.serviceData?.serviceFigure}
         />
-        <Card.Body className="servicecardbody  rounded">
+        <Card.Body className="servicecardbody rounded">
           <Card.Title>{props.serviceData?.serviceTitle}</Card.Title>
           <Card.Text>{props.serviceData?.serviceDesc}</Card.Text>
         </Card.Body>

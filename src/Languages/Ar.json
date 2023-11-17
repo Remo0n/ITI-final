@@ -18,9 +18,9 @@
   "You got a place here...": "لديك مكان هنا...",
   "Join Us Now": "انضم الينا الان",
   "Articles": "المقالات",
-  "Dogs": "الكلاب",
-  "Cats": "القطط",
-  "Birds": "الطيور",
+  "Dogs": "كلاب",
+  "Cats": "قطط",
+  "Birds": "طيور",
   "Vets": " العيادات",
   "Select Your Area": "اختر منطقتك",
   "please wait we are collecting data": " جاري تحميل البيانات",
@@ -43,6 +43,10 @@
   "Please have some mercy upon them.": "من فضلكم الرحمة بهذه الحيوانات. ",
   "We aim to give them what they deserve.": "نحن نهدف لمنحهم ما يستحقونه.",
   "Our Team": "فريقنا",
+
+  "Show More": "المزيد",
+  "View Details": "التفاصيل",
+
   "Search For Another Vet": "ابحث في منطقه اخري",
   "This Pet Shop is": " متجر الحيوانات هذا علي بعد",
   "away from your Place. That would take": "و هذا سوف يستغرق",

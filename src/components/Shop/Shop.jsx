@@ -11,7 +11,6 @@ function Shop() {
   const searchInput = useRef();
 
   useEffect(() => {
-    console.log(apiArr);
     setDefaultArr(apiArr);
   }, [loading, apiArr]);
 
@@ -22,20 +21,19 @@ function Shop() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setMainCategory("")
-    console.log(e.target[0].value);
+    setMainCategory("");
     setApiParam("?q=" + e.target[0].value);
   };
 
   const handleFilter = (type) => {
     setMainCategory(type);
-    if(type){
+    if (type) {
       setDisplayArr(
         defaultArr.filter((item) => item.main_category.includes(type))
       );
     } else {
-      setApiParam("")
-      searchInput.current.value=''
+      setApiParam("");
+      searchInput.current.value = "";
       setDisplayArr(defaultArr);
     }
   };
@@ -67,8 +65,7 @@ function Shop() {
             className="btn btn-secondary"
             onClick={() => handleFilter()}
             style={{
-              boxShadow:
-                !mainCategory ? "0px 0px 5px 2px #60a5fa" : "none",
+              boxShadow: !mainCategory ? "0px 0px 5px 2px #60a5fa" : "none",
             }}
           >
             All items

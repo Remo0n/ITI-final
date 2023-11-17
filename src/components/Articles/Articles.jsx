@@ -9,16 +9,27 @@ import "./Articles.css";
 const Articles = () => {
   const [articlesData, setArticlesData] = useState({});
   const [filteredData, setFilteredData] = useState([]);
-  const [checkedValue, setCheckedValue] = useState("Dogs");
+  const [checkedValue, setCheckedValue] = useState("dogs");
   const [spinner, setSpinner] = useState(false);
   const { t, i18n } = useTranslation();
 
   let locationUrl = useLocation();
-  console.log(locationUrl.pathname);
 
   const currentLng = i18n.language;
 
   //This was the new solution
+  // if (currentLng == "ar") {
+  //   setCheckedValue("كلاب");
+  // } else if (currentLng == "en") {
+  //   setCheckedValue("Dogs");
+  // }
+  // useEffect(() => {
+  //   if (currentLng == "ar") {
+  //     setCheckedValue("كلاب");
+  //   } else if (currentLng == "en") {
+  //     setCheckedValue("Dogs");
+  //   }
+  // }, [currentLng]);
 
   const rendringArticlesData = () => {
     setSpinner(true);
@@ -60,6 +71,9 @@ const Articles = () => {
   }, [checkedValue]);
 
 */
+  if (spinner) {
+    return <LoadingSpinner />;
+  }
   return (
     <section className="articles pb-5 bg-warning-subtle ">
       {locationUrl.pathname === "/articles" ? (
@@ -87,8 +101,10 @@ const Articles = () => {
               name="btnradio"
               id="btnradio1"
               autoComplete="off"
-              value={"Dogs"}
+              // value={t("Dogs")}
+              value="dogs"
               onChange={(e) => setCheckedValue(e.target.value)}
+              checked={checkedValue == "dogs" ? true : false}
             />
             <label
               className="btn rounded btn-outline-primary me-5"
@@ -103,10 +119,11 @@ const Articles = () => {
               name="btnradio"
               id="btnradio2"
               autoComplete="off"
-              value="Cats"
+              value="cats"
               onChange={(e) => {
                 setCheckedValue(e.target.value);
               }}
+              checked={checkedValue == "cats" ? true : false}
             />
             <label
               className="btn rounded btn-outline-primary mx-5 "
@@ -121,8 +138,9 @@ const Articles = () => {
               name="btnradio"
               id="btnradio3"
               autoComplete="off"
-              value="Birds"
+              value="birds"
               onChange={(e) => setCheckedValue(e.target.value)}
+              checked={checkedValue == "birds" ? true : false}
             />
             <label
               className="btn rounded btn-outline-primary ms-5"
@@ -134,7 +152,7 @@ const Articles = () => {
         </div>
         <div className="articles mb-lg-5  ">
           <div className="row">
-            {spinner ? <LoadingSpinner /> : ""}
+            {/* {spinner ? <LoadingSpinner /> : ""} */}
             {filteredData?.map((art) => (
               <SingleArticle key={art.id} articleData={art} />
             ))}
@@ -145,7 +163,7 @@ const Articles = () => {
         ) : (
           <div className="d-flex justify-content-center">
             <Link className="btn btn-outline-primary " to="/articles">
-              Show More
+              {t("Show More")}
             </Link>
           </div>
         )}

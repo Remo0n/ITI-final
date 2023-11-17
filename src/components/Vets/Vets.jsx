@@ -20,10 +20,7 @@ const Vets = () => {
   const rederingVets = () => {
     setSpinner(true);
     axiosShop.get("/items/vets").then((res) => {
-      console.log(res.data);
-      console.log(res.data[currentLng]);
       setAreas(Object.keys(res.data[currentLng]));
-      console.log(areas);
       setData(res.data[currentLng]);
     });
     setFilteredData(data[selected]);

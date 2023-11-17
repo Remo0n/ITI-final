@@ -1,7 +1,11 @@
 .pet-profile {
-  height: 88vh;
+  min-height: 499px;
 }
 .pet-profile img {
+  max-width: 150px;
+  border-radius: 50%;
+}
+.pet-profile pet-profile__img-box img {
   width: 150px;
   height: 150px;
   object-fit: cover;
@@ -12,9 +16,15 @@
   display: none;
 }
 .pet-profile form {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.pet-profile form .form-box {
   padding: 10px 40px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 .pet-profile__img-box label {
@@ -32,14 +42,63 @@
   background: #f9f9f9;
 }
 .pet-profile input,
-.pet-profile textarea {
-  padding: 15px;
-  border-radius: 5px;
+.pet-profile textarea,
+.pet-profile select {
   width: 100%;
+  height: 50px;
+  outline: none;
+  border: 1px solid #dcdbdb;
+  padding: 0px 10px;
+}
+.pet-profile input:focus,
+.pet-profile textarea:focus,
+.pet-profile select :focus {
+  box-shadow: 0px 0px 2px 0px black;
 }
 .pet-profile__img-box {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 50px 0;
+}
+.pet-profile button {
+  background-color: #07b877;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 24px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.pet-profile .pet-cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 60px;
+}
+.pet-profile .pet-cards .pet-cards__box {
+  width: 30%;
+  background: url("../../assets/card2.png");
+  padding: 10px 25px;
+  box-shadow: 0px 0px 2px 0px #707070;
+  border-radius: 15px;
+  margin: 20px auto;
+  height: 400px;
+  overflow: hidden;
+}
+.pet-profile .pet-cards .pet-cards__box h2 {
+  padding: 3px 0px 15px 3px;
+}
+.pet-profile .pet-cards .pet-cards__box dev {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pet-profile .pet-cards .pet-cards__box img {
+  width: 100px;
+  border-radius: 50%;
+  margin: 5px 75px;
 }

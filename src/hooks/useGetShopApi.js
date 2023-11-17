@@ -21,7 +21,7 @@ const useGetShopApi = (param) => {
 
   useEffect(() => {
     loadData();
-  }, [, param]);
+  }, [param]);
 
   return [loading, error, response];
 };

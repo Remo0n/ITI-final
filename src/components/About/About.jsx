@@ -1,11 +1,58 @@
-// import p1 from "../../Assets/1.png";
 import "./About.css";
-// import homeless from "../../assets/homeless.jpg";
 import homeless from "../../assets/Homeless Animals Need You Now.mp4";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+import { useEffect, useState } from "react";
 
 const About = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const[filteredTeam,setFilteredTeam]=useState()
+  const currentLng = i18next.language;
+
+  const ourTeam = {
+    en: [
+      {
+        name: "Mohamed Ashraf",
+        jobTitle: "Front-End Web Developer",
+        imgSrc: "",
+      },
+      {
+        name: "Mohamed Tarek",
+        jobTitle: "Front-End Web Developer",
+        imgSrc: "",
+      },
+      { name: "Omar Adel", jobTitle: "Front-End Web Developer", imgSrc: "" },
+      { name: "Ossama Ahmed", jobTitle: "Front-End Web Developer", imgSrc: "" },
+      {
+        name: "Remon Botrous",
+        jobTitle: "Front-End Web Developer",
+        imgSrc: "",
+      },
+    ],
+    ar: [
+      { name: "محمد أشرف", jobTitle: "مطور واجهات امامية ", imgSrc: "" },
+      { name: "محمد طارق", jobTitle: "مطور واجهات امامية ", imgSrc: "" },
+      { name: "عمر عادل", jobTitle: "مطور واجهات امامية ", imgSrc: "" },
+      {
+        name: "أسامة أحمد",
+        jobTitle: "مطور واجهات امامية ",
+        imgSrc: "",
+      },
+      {
+        name: "ريمون بطرس",
+        jobTitle: "مطور واجهات امامية ",
+        imgSrc: "",
+      },
+    ],
+  };
+  const renderingTeams=()=>{
+    setFilteredTeam(ourTeam[currentLng])
+
+  }
+
+  useEffect(() => {
+renderingTeams()
+  }, [currentLng]);
   return (
     <section className="about bg-warning-subtle">
       <div className="about_title position-relative col-12">
@@ -36,6 +83,7 @@ const About = () => {
             <figure className="col-lg-6 col-12">
               <video
                 controls
+                autoPlay
                 className="rounded w-100 shadow"
                 src={homeless}
                 alt=""
@@ -45,12 +93,19 @@ const About = () => {
         </div>
       </div>
       <div className="ourteam py-5">
-        <h2 className="text-center fw-bold fs-1 mb-5">{t("Our Team")}</h2>
-      </div>
+        <div className="container">
+          <h2 className="text-center fw-bold fs-1 mb-5">{t("Our Team")}</h2>
 
-      {/* <figure className="col-12">
-        <img className="w-100" src={p1} alt="dogimg" />
-      </figure> */}
+          <div className="teamprofiles row justify-content-between">
+            {filteredTeam?.map((member, index) => (
+              <div className="card col-lg-2 col-12 p-2 text-center mb-md-0 mb-4" key={index}>
+                <h2 className="fs-5">{member.name}</h2>
+                <h3 className="fs-5">{member.jobTitle}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

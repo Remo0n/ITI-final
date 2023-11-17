@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 import "./Footer.css";
 const Footer = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <footer className="bg-dark pt-5 pb-2">
@@ -101,23 +101,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          {/* <div className="footer_useful col-lg-4 col-6">
-            <h3 className="text-info mb-4">Quick Links</h3>
-            <ul className="m-0 p-0">
-              <li className="mb-2">
-                <Link to="/home">Home</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="/about">About</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="/signup">Register</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            </ul>
-          </div> */}
         </div>
         <h5 className="text-center text-white">
           &copy; {t("All Rights Are Reserved")}

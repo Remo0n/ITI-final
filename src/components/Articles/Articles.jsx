@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import "./Articles.css";
 
 const Articles = () => {
-  const [articlesData, setArticlesData] = useState({});
   const [filteredData, setFilteredData] = useState([]);
   const [checkedValue, setCheckedValue] = useState("dogs");
   const [spinner, setSpinner] = useState(false);
@@ -17,24 +16,9 @@ const Articles = () => {
 
   const currentLng = i18n.language;
 
-  //This was the new solution
-  // if (currentLng == "ar") {
-  //   setCheckedValue("كلاب");
-  // } else if (currentLng == "en") {
-  //   setCheckedValue("Dogs");
-  // }
-  // useEffect(() => {
-  //   if (currentLng == "ar") {
-  //     setCheckedValue("كلاب");
-  //   } else if (currentLng == "en") {
-  //     setCheckedValue("Dogs");
-  //   }
-  // }, [currentLng]);
-
   const rendringArticlesData = () => {
     setSpinner(true);
     axiosShop.get("/items/newArticles").then((res) => {
-      setArticlesData(res.data);
       const dataToFilter = res.data[currentLng][checkedValue];
       if (locationUrl.pathname === "/home" || locationUrl.pathname === "/") {
         setFilteredData(dataToFilter?.slice(0, 4));
@@ -49,28 +33,6 @@ const Articles = () => {
     rendringArticlesData();
   }, [checkedValue, currentLng]);
 
-  //This was the old solution
-
-  /*
-  const rendringArticlesData = () => {
-    axiosShop.get("/items/articles").then((res) => {
-      setArticlesData(res.data);
-      const dataToFilter = res.data[checkedValue];
-      if (locationUrl.pathname === "/home" || locationUrl.pathname === "/") {
-        setFilteredData(dataToFilter?.slice(0, 4));
-      } else {
-        setFilteredData(dataToFilter);
-      }
-      setSpinner(false);
-    });
-  };
-
-  useEffect(() => {
-    rendringArticlesData();
-   
-  }, [checkedValue]);
-
-*/
   if (spinner) {
     return <LoadingSpinner />;
   }
@@ -101,7 +63,6 @@ const Articles = () => {
               name="btnradio"
               id="btnradio1"
               autoComplete="off"
-              // value={t("Dogs")}
               value="dogs"
               onChange={(e) => setCheckedValue(e.target.value)}
               checked={checkedValue == "dogs" ? true : false}
@@ -152,7 +113,6 @@ const Articles = () => {
         </div>
         <div className="articles mb-lg-5  ">
           <div className="row">
-            {/* {spinner ? <LoadingSpinner /> : ""} */}
             {filteredData?.map((art) => (
               <SingleArticle key={art.id} articleData={art} />
             ))}

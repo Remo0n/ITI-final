@@ -14,7 +14,7 @@ const Vets = () => {
   const [spinner, setSpinner] = useState(false);
   const { t, i18n } = useTranslation();
 
-  //this is the new solution
+  
   const currentLng = i18n.language;
 
   const rederingVets = () => {
@@ -31,22 +31,7 @@ const Vets = () => {
     rederingVets();
   }, [selected, currentLng]);
 
-  // this is the old solution
-  // const rederingVets = () => {
-  //   setSpinner(true);
-  //   axiosShop.get("/items/vets").then((res) => {
-  //     console.log(res.data);
-  //     setAreas(Object.keys(res.data));
-  //     console.log(areas);
-  //     setData(res.data);
-  //   });
-  //   setFilteredData(data[selected]);
-  //   setSpinner(false);
-  // };
 
-  // useEffect(() => {
-  //   rederingVets();
-  // }, [selected]);
 
   return (
     <section className="vets bg-warning-subtle pb-5">

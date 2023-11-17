@@ -2,10 +2,11 @@
   min-height: 499px;
 }
 .pet-profile img {
-  max-width: 150px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
-.pet-profile pet-profile__img-box img {
+.pet-profile .pet-profile__img-box img {
   width: 150px;
   height: 150px;
   object-fit: cover;

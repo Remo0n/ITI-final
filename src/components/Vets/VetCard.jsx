@@ -2,7 +2,7 @@ import "./VetCard.css";
 import { useTranslation } from "react-i18next";
 
 const VetCard = (props) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="vetcard p-5 border rounded shadow bg-light mb-4 ">

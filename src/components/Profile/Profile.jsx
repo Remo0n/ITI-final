@@ -28,12 +28,13 @@ const Profile = () => {
     setPet((prevPet) => ({ ...prevPet, [name]: value }));
   };
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
+      const imageUrl = await uploadImage(file);
       setPet((prevPet) => ({
         ...prevPet,
-        image: file,
+        image: imageUrl,
         imagePreview: URL.createObjectURL(file),
       }));
     }
@@ -55,14 +56,6 @@ const Profile = () => {
 
     try {
       if (pet.image) {
-        const imageUrl = await uploadImage(pet.image);
-
-        setPet((prevPet) => ({
-          ...prevPet,
-          image: imageUrl,
-          imagePreview: null,
-        }));
-
         const userRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(userRef);
 

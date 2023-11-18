@@ -12,7 +12,7 @@ import { useParams } from "react-router";
 import "../Maps/MapsStyle.css";
 
 // import p4 from "../../Assets/ser3.png";
-import p4 from "../../Assets/4.webp";
+import p4 from "../../assets/4.webp";
 
 import { useTranslation } from "react-i18next";
 

@@ -39,15 +39,13 @@ const SingleArticleDetails = () => {
   return (
     <div className="detailspage py-5 bg-warning-subtle">
       <div className="container">
-        <Card>
-          <Card.Body className="articlecardbody_details rounded shadow p-5">
-            <Card.Title className="fs-4 fw-bold mb-4">
-              {selectedArticle?.infoTitle}
-            </Card.Title>
-            <Card.Text>{selectedArticle?.infoDesc}</Card.Text>
-            <Card.Text>{selectedArticle?.infoDetails}</Card.Text>
-          </Card.Body>
-        </Card>
+        <Card.Body className="articlecardbody_details rounded shadow p-5">
+          <Card.Title className="fs-4 fw-bold mb-4">
+            {selectedArticle?.infoTitle}
+          </Card.Title>
+          <Card.Text>{selectedArticle?.infoDesc}</Card.Text>
+          <Card.Text>{selectedArticle?.infoDetails}</Card.Text>
+        </Card.Body>
       </div>
     </div>
   );

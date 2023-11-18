@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const About = () => {
   const { t } = useTranslation();
-  const[filteredTeam,setFilteredTeam]=useState()
+  const [filteredTeam, setFilteredTeam] = useState();
   const currentLng = i18next.language;
 
   const ourTeam = {
@@ -45,18 +45,17 @@ const About = () => {
       },
     ],
   };
-  const renderingTeams=()=>{
-    setFilteredTeam(ourTeam[currentLng])
-
-  }
+  const renderingTeams = () => {
+    setFilteredTeam(ourTeam[currentLng]);
+  };
 
   useEffect(() => {
-renderingTeams()
+    renderingTeams();
   }, [currentLng]);
   return (
     <section className="about bg-warning-subtle">
       <div className="about_title position-relative col-12">
-        <h2 className="position-absolute top-50 start-50 translate-middle text-white fw-bold">
+        <h2 className="position-absolute top-50 start-50 translate-middle text-center text-white fw-bold">
           {t("About Us")}
         </h2>
       </div>
@@ -93,12 +92,16 @@ renderingTeams()
         </div>
       </div>
       <div className="ourteam py-5">
-        <div className="container">
           <h2 className="text-center fw-bold fs-1 mb-5">{t("Our Team")}</h2>
+        <div className="container">
+          
 
-          <div className="teamprofiles row justify-content-between">
+          <div className="teamprofiles d-flex flex-wrap justify-content-between">
             {filteredTeam?.map((member, index) => (
-              <div className="card col-lg-2 col-12 p-2 text-center mb-md-0 mb-4" key={index}>
+              <div
+                className="card col-lg-2 col-12 p-2 text-center mb-md-0 mb-4"
+                key={index}
+              >
                 <h2 className="fs-5">{member.name}</h2>
                 <h3 className="fs-5">{member.jobTitle}</h3>
               </div>

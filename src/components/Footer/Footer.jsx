@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="bg-dark pt-5 pb-2">
       <div className="container">
         <div className="row justify-content-between mb-5">
-          <div className="footer_useful col-lg-4 col-6 mb-5 mb-md-0">
+          <div className="footer_useful col-lg-4 col-12 mb-5 mb-md-0">
             <h3 className="text-info mb-4">{t("Quick Links")}</h3>
             <ul className="m-0 p-0">
               <li className="mb-2">
@@ -26,7 +26,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="footer_useful col-lg-4 col-6">
+          <div className="footer_social col-lg-4 col-12">
             <h3 className="text-info mb-4">{t("Socials")}</h3>
             <ul className="m-0 p-0 d-flex">
               <li>

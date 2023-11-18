@@ -1,6 +1,5 @@
-
-import {  useTranslation } from "react-i18next";
-import p4 from "../../Assets/4.webp";
+import { useTranslation } from "react-i18next";
+import p4 from "../../assets/4.webp";
 import "./Hero.css";
 
 const Hero = () => {

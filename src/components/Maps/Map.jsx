@@ -7,7 +7,7 @@ import {
   DirectionsRenderer,
 } from "@react-google-maps/api";
 import Places from "./Places";
-import Distance from "./distance";
+import Distance from "./Distance";
 import { useParams } from "react-router";
 import "../Maps/MapsStyle.css";
 

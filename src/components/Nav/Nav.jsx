@@ -61,7 +61,7 @@ const NavComponent = () => {
               )
             )}
           </div>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="bg-light" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className=" ournavbar d-flex align-items-center ">
               <Nav.Link>

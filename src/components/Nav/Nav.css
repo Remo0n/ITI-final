@@ -2,6 +2,16 @@ a {
   text-decoration: none !important;
 }
 
+.brand-img{
+  width: 100%;
+  height: 100%;
+}
+
+.brand-box{
+  height: 2.5rem;
+  margin: 0;
+}
+
 .link {
   color: white !important;
 }

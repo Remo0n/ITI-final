@@ -3,6 +3,7 @@
 }
 .servicecardbody {
   height: 10rem !important;
+
   background-image: url(../../Assets/card2.png);
   background-size: cover;
 }
@@ -10,3 +11,5 @@
   scale: 1.1;
   transition: 0.5s ease-in-out;
 }
+
+

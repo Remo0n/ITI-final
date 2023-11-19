@@ -1,9 +1,12 @@
 .card img {
-    height: 277px !important;
-  }
-  .servicecardbody {
-    height: 10rem !important;
-    background-image: url(../../Assets/card2.png);
-    background-size: cover;
-  }
-  
+  height: 277px !important;
+}
+.servicecardbody {
+  height: 10rem !important;
+  background-image: url(../../Assets/card2.png);
+  background-size: cover;
+}
+.singleservice_card:hover {
+  scale: 1.1;
+  transition: 0.5s ease-in-out;
+}

@@ -9,7 +9,7 @@ const RegisterNow = () => {
     <section className="registernow py-5 bg-warning-subtle">
       <div className="container">
       <div className=" card_registernow  d-flex flex-wrap  align-items-center">
-        <div className="  col-lg-4 col-12 p-0  ">
+        <div className="  col-lg-4 col-12 p-0 ">
           <div>
             <img
               className="w-100 rounded-start"

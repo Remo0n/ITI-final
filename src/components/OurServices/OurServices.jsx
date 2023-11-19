@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "./OurServices.css";
 import SingleService from "./SingleService";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import 'animate.css';
 
 const Services = () => {
  
@@ -70,7 +71,7 @@ const Services = () => {
         </h2>
         <div className="row ">
           {currentData?.map((service) => (
-            <SingleService key={service.id} serviceData={service} />
+            <SingleService key={service.id} serviceData={service}  />
           ))}
         </div>
       </div>

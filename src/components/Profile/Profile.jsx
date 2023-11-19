@@ -3,16 +3,20 @@ import { useSelector } from "react-redux";
 import { db } from "../../services/firebaseConfig";
 import { doc, setDoc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import userAvatar from "../../assets/avatar.png";
 import "./Profile.css";
 
 const Profile = () => {
   const [pet, setPet] = useState({
     name: "",
+    petType: "Cat",
     age: "",
     color: "white",
     sex: "Male",
     Vaccines: "",
     status: "",
+    sensitive: "",
+    skills: "",
     image: null,
     imagePreview: null,
   });
@@ -39,7 +43,28 @@ const Profile = () => {
       }));
     }
   };
-
+  const petTypes = [
+    "Dog",
+    "Cat",
+    "Bird",
+    "Hamster",
+    "Fish",
+    "Rabbit",
+    "Guinea Pig",
+    "Turtle",
+    "Snake",
+    "Lizard",
+    "Ferret",
+    "Hedgehog",
+    "Chinchilla",
+    "Gerbil",
+    "Spider",
+    "Hermit Crab",
+    "Tarantula",
+    "Mouse",
+    "Rat",
+    "Parrot",
+  ];
   const colorOptions = [
     "white",
     "black",
@@ -73,11 +98,14 @@ const Profile = () => {
 
         setPet({
           name: "",
+          petType: "",
           age: "",
           color: "white",
           sex: "Male",
           Vaccines: "",
           status: "",
+          sensitive: "",
+          skills: "",
           image: null,
           imagePreview: null,
         });
@@ -144,10 +172,21 @@ const Profile = () => {
             value={pet.name}
             onChange={handleInputChange}
           />
+          <select
+            name="petType"
+            value={pet.petType}
+            onChange={handleInputChange}
+          >
+            {petTypes.map((type, index) => (
+              <option key={index} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
           <input
             type="number"
             name="age"
-            placeholder="Age"
+            placeholder="Age per month"
             value={pet.age}
             onChange={handleInputChange}
           />
@@ -172,6 +211,22 @@ const Profile = () => {
             onChange={handleInputChange}
           ></textarea>
           <textarea
+            type="text"
+            name="sensitive"
+            placeholder="sensitive"
+            value={pet.sensitive}
+            maxLength={100}
+            onChange={handleInputChange}
+          ></textarea>
+          <textarea
+            type="text"
+            name="skills"
+            placeholder="skills"
+            value={pet.skills}
+            maxLength={100}
+            onChange={handleInputChange}
+          ></textarea>
+          <textarea
             rows="2"
             cols="50"
             name="status"
@@ -186,16 +241,23 @@ const Profile = () => {
       <div className="pet-cards">
         {petProfiles.map((x, index) => (
           <div className="pet-cards__box" key={index}>
-            <img src={x.image} alt="" />
+            <img src={x.image ? x.image : userAvatar} alt="" />
             <h2>{x.name}</h2>
+            <p>{x.petType}</p>
             <p>{x.sex}</p>
-            <p>{x.age} year</p>
+            <p>{x.age} month</p>
             <p>{x.color}</p>
             <p>
               <strong>Vaccines:</strong> {x.Vaccines}
             </p>
             <p>
+              <strong>sensitive:</strong> {x.sensitive}
+            </p>
+            <p>
               <strong>Status:</strong> {x.status}
+            </p>
+            <p>
+              <strong>skills:</strong> {x.skills}
             </p>
           </div>
         ))}

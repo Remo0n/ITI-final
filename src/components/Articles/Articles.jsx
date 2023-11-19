@@ -50,83 +50,82 @@ const Articles = () => {
         </div>
       )}
 
-      <div className="container">
-        <div className="categories text-center">
-          <div
-            className="btn-group mb-5"
-            role="group"
-            aria-label="Basic radio toggle button group"
-          >
-            <input
-              type="radio"
-              className="btn-check "
-              name="btnradio"
-              id="btnradio1"
-              autoComplete="off"
-              value="dogs"
-              onChange={(e) => setCheckedValue(e.target.value)}
-              checked={checkedValue == "dogs" ? true : false}
-            />
-            <label
-              className="btn rounded btn-outline-primary me-5"
-              htmlFor="btnradio1"
-            >
-              {t("Dogs")}
-            </label>
+      <div className="categories">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="mb-5 col-lg-5 col-12 d-flex justify-content-between">
+              <input
+                type="radio"
+                className="btn-check "
+                name="btnradio"
+                id="btnradio1"
+                autoComplete="off"
+                value="dogs"
+                onChange={(e) => setCheckedValue(e.target.value)}
+                checked={checkedValue == "dogs" ? true : false}
+              />
+              <label
+                className="btn rounded btn-outline-primary fw-bold"
+                htmlFor="btnradio1"
+              >
+                {t("Dogs")}
+              </label>
 
-            <input
-              type="radio"
-              className="btn-check"
-              name="btnradio"
-              id="btnradio2"
-              autoComplete="off"
-              value="cats"
-              onChange={(e) => {
-                setCheckedValue(e.target.value);
-              }}
-              checked={checkedValue == "cats" ? true : false}
-            />
-            <label
-              className="btn rounded btn-outline-primary mx-5 "
-              htmlFor="btnradio2"
-            >
-              {t("Cats")}
-            </label>
+              <input
+                type="radio"
+                className="btn-check "
+                name="btnradio"
+                id="btnradio2"
+                autoComplete="off"
+                value="cats"
+                onChange={(e) => {
+                  setCheckedValue(e.target.value);
+                }}
+                checked={checkedValue == "cats" ? true : false}
+              />
+              <label
+                className="btn rounded btn-outline-primary fw-bold "
+                htmlFor="btnradio2"
+              >
+                {t("Cats")}
+              </label>
 
-            <input
-              type="radio"
-              className="btn-check"
-              name="btnradio"
-              id="btnradio3"
-              autoComplete="off"
-              value="birds"
-              onChange={(e) => setCheckedValue(e.target.value)}
-              checked={checkedValue == "birds" ? true : false}
-            />
-            <label
-              className="btn rounded btn-outline-primary ms-5"
-              htmlFor="btnradio3"
-            >
-              {t("Birds")}
-            </label>
+              <input
+                type="radio"
+                className="btn-check "
+                name="btnradio"
+                id="btnradio3"
+                autoComplete="off"
+                value="birds"
+                onChange={(e) => setCheckedValue(e.target.value)}
+                checked={checkedValue == "birds" ? true : false}
+              />
+              <label
+                className="btn rounded btn-outline-primary fw-bold "
+                htmlFor="btnradio3"
+              >
+                {t("Birds")}
+              </label>
+            </div>
           </div>
+
+          <div className="articles mb-lg-5">
+            <div className="row">
+              {filteredData?.map((art) => (
+                <SingleArticle key={art.id} articleData={art} />
+              ))}
+            </div>
+          </div>
+          {locationUrl.pathname === "/articles" ? (
+            ""
+          ) : (
+            <div className="d-flex justify-content-center">
+              <Link className="btn btn-outline-primary " to="/articles">
+                {t("Show More")}
+              </Link>
+            </div>
+          )}
         </div>
-        <div className="articles mb-lg-5  ">
-          <div className="row">
-            {filteredData?.map((art) => (
-              <SingleArticle key={art.id} articleData={art} />
-            ))}
-          </div>
-        </div>
-        {locationUrl.pathname === "/articles" ? (
-          ""
-        ) : (
-          <div className="d-flex justify-content-center">
-            <Link className="btn btn-outline-primary " to="/articles">
-              {t("Show More")}
-            </Link>
-          </div>
-        )}
       </div>
     </section>
   );

@@ -42,7 +42,9 @@ const NavComponent = () => {
         <Container>
           <Navbar.Brand>
             <Link className="text-light" to="/home">
-              Paw-Paw
+              <figure className="brand-box">
+              <img className="brand-img" src="\src\assets\brand.png" alt="" />
+              </figure>
             </Link>
           </Navbar.Brand>
           <div>
@@ -64,43 +66,39 @@ const NavComponent = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" className="bg-light" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className=" ournavbar d-flex align-items-center ">
-              <Nav.Link>
+              
                 <Link className="link text-light ms-3" to="/home">
                   {t("Home")}
                 </Link>
-              </Nav.Link>
-              <Nav.Link>
+              
+              
                 <Link className="link text-light ms-3" to="/vets">
                   {t("Vets")}
                 </Link>
-              </Nav.Link>
-              <Nav.Link>
+              
+              
                 <Link className="link text-light ms-3" to="/articles">
                   {t("Articles")}
                 </Link>
-              </Nav.Link>
-              <Nav.Link>
+              
                 <Link className="link text-light ms-3" to="/shop">
                   {t("Shop")}
                 </Link>
-              </Nav.Link>
-              <Nav.Link>
+              
                 <Link className="link text-light ms-3" to="/about">
                   {t("About")}
                 </Link>
-              </Nav.Link>
-              <Nav.Link>
+              
                 {user && (
                   <Link className="link text-light ms-3" to="/profile">
                     Profile
                   </Link>
                 )}
-              </Nav.Link>
-              <Nav.Link>
+              
                 <Link className="link text-light ms-3" to="/GoogleMaps">
                   {t("Locations")}
                 </Link>
-              </Nav.Link>
+              
               {user && (
                 <Link className="link text-light" onClick={handleSignOut}>
                   Sign out

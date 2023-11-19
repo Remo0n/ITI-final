@@ -1,3 +1,12 @@
 .shop__key-pts {
     list-style:disc
 }
+
+.shop__main-img{
+    height: 500px;
+}
+
+.shop__mini-img{
+    max-width: 50px;
+    /* max-height: 100px */
+}

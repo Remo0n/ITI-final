@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import ShopItemCard from "./ShopItemCard";
+import LoadingSpinner from "../../Shared/LoadingSpinner";
 
 function ShopItemsContainer({ loading, displayArr }) {
   if (!loading && displayArr) {
@@ -15,13 +16,13 @@ function ShopItemsContainer({ loading, displayArr }) {
     ));
     return (
       <>
-        <div className="row row-cols-lg-4 row-cols-md-3 row-cols-2 row-gap-5">
+        <div className="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 row-gap-5">
           {shopRender}
         </div>
       </>
     );
   } else {
-    return <p>Loading ...</p>;
+    return <LoadingSpinner/>;
   }
 }
 

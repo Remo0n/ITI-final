@@ -1,9 +1,8 @@
 .card img {
-    height: 277px !important;
-  }
-  .servicecardbody {
-    height: 10rem !important;
-    background-image: url(../../Assets/card2.png);
-    background-size: cover;
-  }
-  
+  height: 277px !important;
+}
+.servicecardbody {
+  height: 10rem !important;
+  background-image: url(../../assets/card2.png);
+  background-size: cover;
+}

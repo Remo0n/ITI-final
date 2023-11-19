@@ -60,6 +60,8 @@ function Shop() {
           <input type="submit" className="btn btn-primary  ms-2" />
         </form>
 
+
+
         <div className="d-flex gap-5 justify-content-center my-5">
           <button
             className="btn btn-secondary"

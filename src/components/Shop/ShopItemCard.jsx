@@ -7,9 +7,9 @@ function ShopItemCard({ id, title, img, price, imgHeight }) {
 
 
   return (
-    <div className="col p-2 ">
-        <div className="h-100  d-flex flex-column p-4  justify-content-between">
-            <Link to={id} className="d-flex flex-column ">
+    <div className="card-cont p-2 flex-grow-1">
+        <div className="h-100 d-flex flex-column p-4  justify-content-between d-flex flex-grow-1">
+            <Link to={`/shop/${id}`} className="d-flex flex-column ">
             <figure className="shop__img-cont flex-grow-1 d-flex justify-content-center align-items-center"
             style={{height: imgHeight}}>
                 <img src={img}  className="shop__img" alt="Product image" />
@@ -18,7 +18,7 @@ function ShopItemCard({ id, title, img, price, imgHeight }) {
             </Link>
             <div>
             <p>{price} EGP</p>
-            <Link to={id}><button className="btn btn-primary">More Details</button></Link>
+            <Link to={`/shop/${id}`}><button className="btn btn-primary">More Details</button></Link>
             </div>
             
         </div>

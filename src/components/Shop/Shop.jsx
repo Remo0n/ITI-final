@@ -48,8 +48,8 @@ function Shop() {
   };
 
   return (
-    <div className="bg-white">
-      <div className="container text-dark py-5">
+    <div className="bg-warning-subtle">
+      <div className="container mx-auto text-dark py-5">
         <form onSubmit={handleSubmit} className="d-flex justify-content-center">
           <input
             type="text"

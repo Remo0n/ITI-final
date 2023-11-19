@@ -7,16 +7,16 @@ function ShopItemCard({ id, title, img, price, imgHeight }) {
 
 
   return (
-    <div className="card-cont p-2 flex-grow-1">
-        <div className="h-100 d-flex flex-column p-4  justify-content-between d-flex flex-grow-1">
+    <div className="shop__card-cont px-2 flex-grow-1">
+        <div className="shop__card-box h-100 bg-white rounded-4 shadow d-flex flex-column p-4  justify-content-between d-flex flex-grow-1">
             <Link to={`/shop/${id}`} className="d-flex flex-column ">
-            <figure className="shop__img-cont flex-grow-1 d-flex justify-content-center align-items-center"
+            <figure className="shop__img-cont bg-white flex-grow-1 d-flex justify-content-center align-items-center"
             style={{height: imgHeight}}>
                 <img src={img}  className="shop__img" alt="Product image" />
             </figure>
             <h6>{title}</h6>
             </Link>
-            <div>
+            <div className="d-flex flex-column align-items-center">
             <p>{price} EGP</p>
             <Link to={`/shop/${id}`}><button className="btn btn-primary">More Details</button></Link>
             </div>

@@ -4,7 +4,7 @@
 }
 
 .shop__card-box {
-  background-image: url(/assets/card2.png);
+  background-image: url(/src/assets/card2.png);
 }
 
 .shop__card-box > a {

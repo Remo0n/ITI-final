@@ -115,7 +115,7 @@ function Shop() {
             
           >
             <figure className={`shop__filter-img-cont  rounded-circle border ${!mainCategory ? "shop__filter-btn-active" :"shop__filter-btn"}` }>
-              <img className="shop__filter-img bg-white p-1" src="\src\assets\shop\pets.jpg" alt="" />
+              <img className="shop__filter-img bg-white p-1" src="\shop\pets.jpg" alt="" />
             </figure>
             All Items
           </button>

@@ -43,7 +43,7 @@ const NavComponent = () => {
           <Navbar.Brand>
             <Link className="text-light" to="/home">
               <figure className="brand-box">
-              <img className="brand-img" src="\src\assets\brand.png" alt="" />
+              <img className="brand-img" src="\brand.png" alt="" />
               </figure>
             </Link>
           </Navbar.Brand>

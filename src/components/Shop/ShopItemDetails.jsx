@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useGetShopItems from "../../hooks/useGetShopApi";
 
 import "./ShopItemDetails.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faCartPlus, faCircleDown, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 function ShopItemDetails() {
   const params = useParams();
 
   const [loading, error, item] = useGetShopItems(params.id);
   const [imgIndex, setImgIndex] = useState(0);
+
+  const sellerInfo = useRef(null);
 
   if (!loading && item) {
     return (
@@ -54,6 +56,9 @@ function ShopItemDetails() {
                 <button className="custom-btn-prime rounded-3 py-2 px-4 my-2">
                 <FontAwesomeIcon icon={faCartPlus}/> Add to Cart
                 </button>
+                <button className="custom-btn-prime rounded-3 py-2 px-4 my-2 mx-2"
+                onClick={() => sellerInfo.current.scrollIntoView() }
+                > <FontAwesomeIcon className="me-2" icon={faCircleDown} />Seller Info</button>
               </div>
 
               <div className="pt-5">
@@ -72,7 +77,7 @@ function ShopItemDetails() {
             <p>{item.description}</p>
           </div>
 
-          <div className="my-5">
+          <div className="my-5" ref={sellerInfo}>
             <h3>Seller Info:</h3>
             <p>
               <span className="fw-semibold">Seller Name:</span> {item.seller}

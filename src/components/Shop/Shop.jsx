@@ -127,7 +127,7 @@ function Shop() {
             
           >
             <figure className={`shop__filter-img-cont  rounded-circle border ${mainCategory == "dog" ? "shop__filter-btn-active" :"shop__filter-btn"}` }>
-              <img className="shop__filter-img" src="\src\assets\shop\dog.jpg" alt="" />
+              <img className="shop__filter-img" src="\shop\dog.jpg" alt="" />
             </figure>
             Dog
           </button>
@@ -138,7 +138,7 @@ function Shop() {
             
           >
             <figure className={`shop__filter-img-cont  rounded-circle border ${mainCategory == "cat" ? "shop__filter-btn-active" :"shop__filter-btn"}` }>
-              <img className="shop__filter-img" src="\src\assets\shop\cat.jpg" alt="" />
+              <img className="shop__filter-img" src="\shop\cat.jpg" alt="" />
             </figure>
             Cat
           </button>
@@ -149,7 +149,7 @@ function Shop() {
             
           >
             <figure className={`shop__filter-img-cont  rounded-circle border ${mainCategory == "bird" ? "shop__filter-btn-active" :"shop__filter-btn"}` }>
-              <img className="shop__filter-img" src="\src\assets\shop\bird.jpg" alt="" />
+              <img className="shop__filter-img" src="\shop\bird.jpg" alt="" />
             </figure>
             Birds
           </button>
@@ -160,7 +160,7 @@ function Shop() {
             
           >
             <figure className={`shop__filter-img-cont p-1 bg-white  rounded-circle border ${mainCategory == "fish" ? "shop__filter-btn-active" :"shop__filter-btn"}` }>
-              <img className="shop__filter-img" src="\src\assets\shop\fish.jpg" alt="" />
+              <img className="shop__filter-img" src="\shop\fish.jpg" alt="" />
             </figure>
             Fish
           </button>

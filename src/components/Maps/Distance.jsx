@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 function Distance({ leg }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   if (!leg.distance || !leg.duration) return null;
   return (

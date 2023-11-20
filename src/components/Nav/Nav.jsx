@@ -28,8 +28,8 @@ const NavComponent = () => {
     const auth = getAuth();
 
     try {
-      await signOut(auth); // Sign out the user
-      dispatch(setUser(null)); // Set the user to null in the Redux store
+      await signOut(auth); 
+      dispatch(setUser(null)); 
       navigate("/");
     } catch (error) {
       console.error("Error signing out: ", error);
@@ -100,7 +100,7 @@ const NavComponent = () => {
                 </Link>
               
               {user && (
-                <Link className="link text-light" onClick={handleSignOut}>
+                <Link className="link text-light ms-3" onClick={handleSignOut}>
                   Sign out
                 </Link>
               )}

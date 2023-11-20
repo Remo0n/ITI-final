@@ -14,34 +14,54 @@ const About = () => {
       {
         name: "Mohamed Ashraf",
         jobTitle: "Front-End Web Developer",
-        imgSrc: "",
+        imgSrc: "src/assets/profile.png",
       },
       {
         name: "Mohamed Tarek",
         jobTitle: "Front-End Web Developer",
-        imgSrc: "",
+        imgSrc: "src/assets/profile.png",
       },
-      { name: "Omar Adel", jobTitle: "Front-End Web Developer", imgSrc: "" },
-      { name: "Ossama Ahmed", jobTitle: "Front-End Web Developer", imgSrc: "" },
+      {
+        name: "Omar Adel",
+        jobTitle: "Front-End Web Developer",
+        imgSrc: "src/assets/profile.png",
+      },
+      {
+        name: "Ossama Ahmed",
+        jobTitle: "Front-End Web Developer",
+        imgSrc: "src/assets/profile.png",
+      },
       {
         name: "Remon Botrous",
         jobTitle: "Front-End Web Developer",
-        imgSrc: "",
+        imgSrc: "src/assets/profile.png",
       },
     ],
     ar: [
-      { name: "محمد أشرف", jobTitle: "مطور واجهات امامية ", imgSrc: "" },
-      { name: "محمد طارق", jobTitle: "مطور واجهات امامية ", imgSrc: "" },
-      { name: "عمر عادل", jobTitle: "مطور واجهات امامية ", imgSrc: "" },
+      {
+        name: "محمد أشرف",
+        jobTitle: "مطور واجهات امامية ",
+        imgSrc: "src/assets/profile.png",
+      },
+      {
+        name: "محمد طارق",
+        jobTitle: "مطور واجهات امامية ",
+        imgSrc: "src/assets/profile.png",
+      },
+      {
+        name: "عمر عادل",
+        jobTitle: "مطور واجهات امامية ",
+        imgSrc: "src/assets/profile.png",
+      },
       {
         name: "أسامة أحمد",
         jobTitle: "مطور واجهات امامية ",
-        imgSrc: "",
+        imgSrc: "src/assets/profile.png",
       },
       {
         name: "ريمون بطرس",
         jobTitle: "مطور واجهات امامية ",
-        imgSrc: "",
+        imgSrc: "src/assets/profile.png",
       },
     ],
   };
@@ -82,7 +102,6 @@ const About = () => {
             <figure className="col-lg-6 col-12">
               <video
                 controls
-                autoPlay
                 className="rounded w-100 shadow"
                 src={homeless}
                 alt=""
@@ -92,16 +111,17 @@ const About = () => {
         </div>
       </div>
       <div className="ourteam py-5">
-          <h2 className="text-center fw-bold fs-1 mb-5">{t("Our Team")}</h2>
+        <h2 className="text-center fw-bold fs-1 mb-5">{t("Our Team")}</h2>
         <div className="container">
-          
-
           <div className="teamprofiles d-flex flex-wrap justify-content-between">
             {filteredTeam?.map((member, index) => (
               <div
-                className="card col-lg-2 col-12 p-2 text-center mb-md-0 mb-4"
+                className="card col-lg-2 col-12 p-2 text-center mb-md-0 mb-4 shadow"
                 key={index}
               >
+                <figure>
+                  <img className="w-100" src={member.imgSrc} alt="" />
+                </figure>
                 <h2 className="fs-5">{member.name}</h2>
                 <h3 className="fs-5">{member.jobTitle}</h3>
               </div>

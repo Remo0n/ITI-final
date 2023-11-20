@@ -7,8 +7,8 @@ function Shop() {
   const [pageIndex, setPageIndex] = useState(1)
   const [apiParam, setApiParam] = useState();
   const [loading, error, apiArr] = useGetShopApi(apiParam);
-  const [defaultArr, setDefaultArr] = useState([]); // An Array to keep the default API response
-  const [displayArr, setDisplayArr] = useState([]); // An Array that can be manipulated to for rendering
+  const [defaultArr, setDefaultArr] = useState([]); 
+  const [displayArr, setDisplayArr] = useState([]);
   const [mainCategory, setMainCategory] = useState();
   const [subCategory, setSubCategory] = useState();
   const searchInput = useRef(null);
@@ -16,14 +16,7 @@ function Shop() {
   // const [pagesNum, setPagesNum] = useState(0)
   let pagesNum = 1
   const [pageBtns, setPageBtns] = useState([])
-  // const pageBtnsA = []
 
-  // useEffect(() => {
-  //   const pagebounce = setTimeout(() => {
-  //     searchInput.current.scrollIntoView();
-  //   }, 200);
-  // }, [pageIndex])
-  
 
   useEffect(() => {
     setDefaultArr(apiArr);

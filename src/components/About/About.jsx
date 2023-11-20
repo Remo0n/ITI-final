@@ -82,7 +82,6 @@ const About = () => {
             <figure className="col-lg-6 col-12">
               <video
                 controls
-                autoPlay
                 className="rounded w-100 shadow"
                 src={homeless}
                 alt=""
@@ -92,10 +91,8 @@ const About = () => {
         </div>
       </div>
       <div className="ourteam py-5">
-          <h2 className="text-center fw-bold fs-1 mb-5">{t("Our Team")}</h2>
+        <h2 className="text-center fw-bold fs-1 mb-5">{t("Our Team")}</h2>
         <div className="container">
-          
-
           <div className="teamprofiles d-flex flex-wrap justify-content-between">
             {filteredTeam?.map((member, index) => (
               <div

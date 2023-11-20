@@ -77,25 +77,18 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<NotFoundPage />} />{" "}
-        <Route
-          path="/GoogleMaps"
-          element={
-            <ProtectedRoute>
-              <Maps />
-            </ProtectedRoute>
-          }
-        />
+
         <Route
           path="/GoogleMaps/:lat/:lng"
           element={
-            <ProtectedRoute>
-              <Maps />
-            </ProtectedRoute>
+            <Maps />
           }
         />
-        <Route path="*" element={<h1>404 Not found</h1>} />
-        
+
+          <Route path="*" element={<NotFoundPage />} />{" "}
+        <Route path="*" element={<h1>404 Not found</h1>} />{" "}
+        {/* Catch-all route */}
+
       </Routes>
       <Footer />
     </Router>

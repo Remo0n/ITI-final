@@ -33,7 +33,7 @@ const App = () => {
     dispatch(checkAuthStatus());
   }, [dispatch]);
 
-  const rtlLanguages = ["ar"]; 
+  const rtlLanguages = ["ar"];
 
   function isRtlLanguage(language) {
     return rtlLanguages.includes(language);
@@ -77,18 +77,10 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-
-        <Route
-          path="/GoogleMaps/:lat/:lng"
-          element={
-            <Maps />
-          }
-        />
-
-          <Route path="*" element={<NotFoundPage />} />{" "}
+        <Route path="/GoogleMaps/:lat/:lng" element={<Maps />} />
+        <Route path="*" element={<NotFoundPage />} />{" "}
         <Route path="*" element={<h1>404 Not found</h1>} />{" "}
         {/* Catch-all route */}
-
       </Routes>
       <Footer />
     </Router>

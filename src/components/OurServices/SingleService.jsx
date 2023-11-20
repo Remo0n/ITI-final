@@ -1,11 +1,10 @@
 import Card from "react-bootstrap/Card";
 import "./SingleService.css";
-import 'animate.css';
 
 const SingleService = (props) => {
   return (
     <div className="col-lg-4 col-12 mb-4 mb-md-0   ">
-      <Card className=" singleservice_card w-100 text-center shadow  ">
+      <Card className=" singleservice_card w-100 text-center shadow">
         <Card.Img
           className="serviceimg"
           variant="top"

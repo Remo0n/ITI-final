@@ -4,7 +4,7 @@ import useGetShopItems from "../../hooks/useGetShopApi";
 
 import "./ShopItemDetails.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faCircleDown, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDownLong, faCartPlus, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 function ShopItemDetails() {
   const params = useParams();
@@ -58,7 +58,7 @@ function ShopItemDetails() {
                 </button>
                 <button className="custom-btn-prime rounded-3 py-2 px-4 my-2 mx-2"
                 onClick={() => sellerInfo.current.scrollIntoView() }
-                > <FontAwesomeIcon className="me-2" icon={faCircleDown} />Seller Info</button>
+                > <FontAwesomeIcon className="me-2" icon={faArrowDownLong} />Seller Info</button>
               </div>
 
               <div className="pt-5">

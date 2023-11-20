@@ -17,8 +17,8 @@ function ShopItemCard({ id, title, img, price, imgHeight, classes }) {
             <h6>{title}</h6>
             </Link>
             <div className="d-flex flex-column align-items-center">
-            <p>{price} EGP</p>
-            <Link to={`/shop/${id}`}><button className="btn btn-primary">More Details</button></Link>
+            <h4 className="fw-bold">{price} <sup className="fs-6 fw-semibold">EGP</sup></h4>
+            <Link to={`/shop/${id}`}><button className="custom-btn-prime rounded-pill py-2 px-5">More Details</button></Link>
             </div>
             
         </div>

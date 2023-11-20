@@ -4,6 +4,7 @@
 
 .shop__main-img{
     height: 500px;
+    overflow: hidden;
 }
 
 .shop__mini-img{

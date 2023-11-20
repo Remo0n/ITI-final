@@ -33,8 +33,7 @@ const App = () => {
     dispatch(checkAuthStatus());
   }, [dispatch]);
 
-  //for translation
-  const rtlLanguages = ["ar"]; // Add other RTL languages if needed
+  const rtlLanguages = ["ar"]; 
 
   function isRtlLanguage(language) {
     return rtlLanguages.includes(language);
@@ -95,8 +94,8 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<h1>404 Not found</h1>} />{" "}
-        {/* Catch-all route */}
+        <Route path="*" element={<h1>404 Not found</h1>} />
+        
       </Routes>
       <Footer />
     </Router>

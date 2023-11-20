@@ -1,4 +1,4 @@
-// Login.js
+
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,7 +31,7 @@ export default function Login() {
           email: userCredential.user.email,
         })
       );
-      // Redirect to the homepage after successful sign up
+      
       navigate("/");
     } catch (error) {
       console.log(error);

@@ -3,6 +3,7 @@ import "./OurServices.css";
 import SingleService from "./SingleService";
 import { useTranslation } from "react-i18next";
 import 'animate.css';
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const Services = {
@@ -68,9 +69,12 @@ const Services = () => {
         <h2 className="text-center text-dark mb-5 fw-bold fs-1">
           {t("Our Services")}
         </h2>
-        <div className="row ">
+        <div className="row">
           {currentData?.map((service) => (
-            <SingleService key={service.id} serviceData={service}  />
+            
+             <SingleService key={service.id} serviceData={service}  />
+           
+           
           ))}
         </div>
       </div>

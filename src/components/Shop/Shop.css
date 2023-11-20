@@ -1,6 +1,6 @@
-.shop__filter-btn{
+/* .shop__filter-btn{
 
-}
+} */
 .shop__filter-btn:hover{
     scale: 1.2;
 }
@@ -28,4 +28,5 @@
 
 .custom-btn-prime:hover{
     background-color: #c62413;
+    color: white !important;
 }

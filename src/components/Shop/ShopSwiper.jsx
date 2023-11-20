@@ -42,8 +42,9 @@ function ShopSwiper() {
             
         }}
         >
-        {apiArr.map((item) => (
-            <SwiperSlide>
+        {apiArr.map((item, i) => (
+            <SwiperSlide
+            key={i}>
             <div className="swiper__card-cont py-3">
               <ShopItemCard
                 key={item.id}
@@ -51,7 +52,7 @@ function ShopSwiper() {
                 title={item.title.length > 100 ? item.title.slice(0,100)+" ..." : item.title}
                 price={item.price}
                 img={item.images[0]}
-                imgHeight={250}
+                imgHeight={200}
                 />
             </div>
           </SwiperSlide>

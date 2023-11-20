@@ -11,12 +11,14 @@ function ShopItemsContainer({ loading, displayArr }) {
         title={item.title}
         price={item.price}
         img={item.images[0]}
-        imgHeight={400}
+        imgHeight={250}
+        classes={'col col-12 col-xl-3 col-lg-4 col-md-6 '}
       />
     ));
+    // console.log(shopRender)
     return (
       <>
-        <div className="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 row-gap-5">
+        <div className="row  row-gap-5">
           {shopRender}
         </div>
       </>

@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 import './ShopItemCard.css'
 
-function ShopItemCard({ id, title, img, price, imgHeight }) {
+function ShopItemCard({ id, title, img, price, imgHeight, classes }) {
 
 
   return (
-    <div className="shop__card-cont px-2 flex-grow-1">
+    <div className={`shop__card-cont  px-2 ${classes}`}>
         <div className="shop__card-box h-100 bg-white rounded-4 shadow d-flex flex-column p-4  justify-content-between d-flex flex-grow-1">
             <Link to={`/shop/${id}`} className="d-flex flex-column ">
             <figure className="shop__img-cont bg-white flex-grow-1 d-flex justify-content-center align-items-center"

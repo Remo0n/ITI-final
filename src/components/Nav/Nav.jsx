@@ -100,7 +100,7 @@ const NavComponent = () => {
                 </Link>
               
               {user && (
-                <Link className="link text-light" onClick={handleSignOut}>
+                <Link className="link text-light ms-3" onClick={handleSignOut}>
                   Sign out
                 </Link>
               )}

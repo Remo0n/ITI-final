@@ -17,3 +17,9 @@
   display: inline-block;
   margin-right: 0.5rem;
 }
+
+.teamprofile {
+  width: 5rem !important;
+  height: 5rem !important;
+  
+}

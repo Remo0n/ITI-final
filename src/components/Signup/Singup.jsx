@@ -6,10 +6,10 @@ import { setUser } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import "./Singup.css";
 import { doc, setDoc } from "firebase/firestore";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const Signup = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -20,7 +20,6 @@ const Signup = () => {
   const handleSignUp = async (event) => {
     event.preventDefault();
 
-    // Simple client-side validation for example purposes
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
@@ -36,17 +35,14 @@ const Signup = () => {
       const user = userCredential.user;
       await setDoc(doc(db, "users", user.uid), {
         email: user.email,
-        // any other initial user data
       });
 
-      // Set the user in the global state
       dispatch(
         setUser({
           uid: userCredential.user.uid,
           email: userCredential.user.email,
         })
       );
-      // Redirect to the homepage after successful sign up
       navigate("/");
     } catch (error) {
       setError(error.message);

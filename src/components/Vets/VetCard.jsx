@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const VetCard = (props) => {
   const { t } = useTranslation();
 
-  console.log(props)
+
 
   return (
     <div className="vetcard p-5 border rounded shadow bg-light mb-4 ">
@@ -24,17 +24,17 @@ const VetCard = (props) => {
         ))}
       </ul>
       <Link
-              className="custom-btn-prime px-3 py-2 rounded-4"
-                to={
-                  "/GoogleMaps/" +
-                  props.vetCardData.vet__location.lat +
-                  "/" +
-                  props.vetCardData.vet__location.lng
-                }
-              >
-                <FontAwesomeIcon icon={faLocationDot} className="me-2" />
-                Location
-              </Link>
+        className="custom-btn-prime px-3 py-2 rounded-4"
+        to={
+          "/GoogleMaps/" +
+          props.vetCardData.vet__location.lat +
+          "/" +
+          props.vetCardData.vet__location.lng
+        }
+      >
+        <FontAwesomeIcon icon={faLocationDot} className="me-2" />
+        {t("Location")}
+      </Link>
     </div>
   );
 };

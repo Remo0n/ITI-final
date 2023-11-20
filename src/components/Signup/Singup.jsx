@@ -98,11 +98,11 @@ const Signup = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
-              placeholder={t("Confirm Password placeholder")}
+              placeholder={t("Confirm Password")}
             />
           </div>
           <div className="text-center">
-            <button className="btn btn-success w-25 fw-bold" type="submit">
+            <button className="btn btn-success fw-bold" type="submit">
               {t("Sign Up")}
             </button>
 
